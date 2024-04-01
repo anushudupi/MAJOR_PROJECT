@@ -30,25 +30,30 @@
 int main(void)
 {
 	Delay_Init( );
-	USART_Printf_Init( 115200 );
-	printf("SystemClk:%d\r\n",SystemCoreClock);
+//	USART_Printf_Init( 115200 );
+//	printf("SystemClk:%d\r\n",SystemCoreClock);
 	RCC_Configuration( );
 
 	/* Tim2 init */
-    TIM2_Init( );
-
-	/* Usart1 init */
-    UART2_Init( 1, DEF_UARTx_BAUDRATE, DEF_UARTx_STOPBIT, DEF_UARTx_PARITY );
+//    TIM2_Init( );
+//
+//	/* Usart1 init */
+//    UART2_Init( 1, DEF_UARTx_BAUDRATE, DEF_UARTx_STOPBIT, DEF_UARTx_PARITY );
 
     /* USB20 device init */
     USBFS_RCC_Init( );
     USBFS_Device_Init( ENABLE );
+    Delay_Ms(1000);
 
-    printf( "main\r\n" );
+//    printf( "main\r\n" );
+    char *a = "Hello,world!\n";//message string
 
 	while(1)
 	{
-        UART2_DataRx_Deal( );
-        UART2_DataTx_Deal( );
+	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
+	            // bit banging ASCII bytes at USB Endpoint3 to send data
+	            Delay_Ms(100);
+//        UART2_DataRx_Deal( );
+//        UART2_DataTx_Deal( );
 	}
 }
