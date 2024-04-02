@@ -35,6 +35,10 @@ __attribute__ ((aligned(4))) uint8_t USBFS_EP0_Buf[ DEF_USBD_UEP0_SIZE ];
 __attribute__ ((aligned(4))) uint8_t USBFS_EP1_Buf[ DEF_USBD_ENDP1_SIZE ];
 __attribute__ ((aligned(4))) uint8_t USBFS_EP2_Buf[ DEF_USBD_ENDP2_SIZE ];
 __attribute__ ((aligned(4))) uint8_t USBFS_EP3_Buf[ DEF_USBD_ENDP3_SIZE ];
+__attribute__ ((aligned(4))) uint8_t USBFS_EP3_Buf[ DEF_USBD_ENDP3_SIZE ];
+
+/* USB recieve  Buffer */
+__attribute__ ((aligned(4))) volatile uint8_t USBFS_RX[DEF_USB_RX_SIZE];
 
 /* USB IN Endpoint Busy Flag */
 volatile uint8_t  USBFS_Endp_Busy[ DEF_UEP_NUM ];
@@ -83,7 +87,7 @@ void USBFS_Device_Endp_Init( void )
     USBFSD->UEP0_DMA = (uint32_t)USBFS_EP0_Buf;
 
     USBFSD->UEP1_DMA = (uint32_t)USBFS_EP1_Buf;
-    USBFSD->UEP2_DMA = (uint32_t)UART2_Tx_Buf;
+    USBFSD->UEP2_DMA = (uint32_t)USBFS_RX;
     USBFSD->UEP3_DMA = (uint32_t)USBFS_EP3_Buf;
 
     USBFSD->UEP0_RX_CTRL = USBFS_UEP_R_RES_ACK;

@@ -84,6 +84,9 @@ extern __attribute__ ((aligned(4))) uint8_t USBFS_EP0_Buf[ ];
 extern __attribute__ ((aligned(4))) uint8_t USBFS_EP1_Buf[ ];
 extern __attribute__ ((aligned(4))) uint8_t USBFS_EP2_Buf[ ];
 extern __attribute__ ((aligned(4))) uint8_t USBFS_EP3_Buf[ ];
+
+/* USB recieve  Buffer */
+extern __attribute__ ((aligned(4))) volatile uint8_t USBFS_RX[ ];
 /* USB IN Endpoint Busy Flag */
 extern volatile uint8_t  USBFS_Endp_Busy[ ];
 
