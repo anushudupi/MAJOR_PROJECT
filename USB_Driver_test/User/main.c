@@ -20,6 +20,17 @@
 #include "ch32v20x_usbfs_device.h"
 #include "debug.h"
 
+void GPIO_Toggle_INIT(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
+
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE);
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+}
+
 /*********************************************************************
  * @fn      main
  *
@@ -29,6 +40,7 @@
  */
 int main(void)
 {
+     u8 i=0;
 	Delay_Init( );
 //	USART_Printf_Init( 115200 );
 //	printf("SystemClk:%d\r\n",SystemCoreClock);
@@ -44,6 +56,7 @@ int main(void)
     USBFS_RCC_Init( );
     USBFS_Device_Init( ENABLE );
     Delay_Ms(1000);
+    GPIO_Toggle_INIT();
 
 //    printf( "main\r\n" );
     char *a = "Hello,world!\n";//message string
@@ -51,8 +64,9 @@ int main(void)
 	while(1)
 	{
 	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
+	    GPIO_WriteBit(GPIOC, GPIO_Pin_13, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
 	            // bit banging ASCII bytes at USB Endpoint3 to send data
-	            Delay_Ms(100);
+	            Delay_Ms(250);
 //        UART2_DataRx_Deal( );
 //        UART2_DataTx_Deal( );
 	}
