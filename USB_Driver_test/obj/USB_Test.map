@@ -91,8 +91,18 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/UART/UART.o
  .data          0x0000000000000000        0x0 ./User/UART/UART.o
  .bss           0x0000000000000000        0x0 ./User/UART/UART.o
+ .bss.UART2_Rx_Buf
+                0x0000000000000000      0x800 ./User/UART/UART.o
  .text.TIM2_Init
                 0x0000000000000000       0xc2 ./User/UART/UART.o
+ .text.UART2_CfgInit
+                0x0000000000000000      0x1c0 ./User/UART/UART.o
+ .text.UART2_DMAInit
+                0x0000000000000000      0x14e ./User/UART/UART.o
+ .text.UART2_Init
+                0x0000000000000000       0xcc ./User/UART/UART.o
+ .text.UART2_USB_Init
+                0x0000000000000000       0xe4 ./User/UART/UART.o
  .text.UART2_DataTx_Deal
                 0x0000000000000000      0x378 ./User/UART/UART.o
  .rodata        0x0000000000000000        0xc ./User/UART/UART.o
@@ -352,8 +362,13 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_dma.o
  .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_dma.o
  .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_dma.o
+ .text.DMA_DeInit
+                0x0000000000000000      0x158 ./Peripheral/src/ch32v20x_dma.o
+ .text.DMA_Init
+                0x0000000000000000       0xa8 ./Peripheral/src/ch32v20x_dma.o
  .text.DMA_StructInit
                 0x0000000000000000       0x6a ./Peripheral/src/ch32v20x_dma.o
+ .text.DMA_Cmd  0x0000000000000000       0x40 ./Peripheral/src/ch32v20x_dma.o
  .text.DMA_ITConfig
                 0x0000000000000000       0x4a ./Peripheral/src/ch32v20x_dma.o
  .text.DMA_SetCurrDataCounter
@@ -368,6 +383,15 @@ Discarded input sections
                 0x0000000000000000       0x40 ./Peripheral/src/ch32v20x_dma.o
  .text.DMA_ClearITPendingBit
                 0x0000000000000000       0x1c ./Peripheral/src/ch32v20x_dma.o
+ .debug_info    0x0000000000000000      0xd36 ./Peripheral/src/ch32v20x_dma.o
+ .debug_abbrev  0x0000000000000000      0x2b3 ./Peripheral/src/ch32v20x_dma.o
+ .debug_aranges
+                0x0000000000000000       0x70 ./Peripheral/src/ch32v20x_dma.o
+ .debug_ranges  0x0000000000000000       0x60 ./Peripheral/src/ch32v20x_dma.o
+ .debug_line    0x0000000000000000      0x70f ./Peripheral/src/ch32v20x_dma.o
+ .debug_str     0x0000000000000000      0x828 ./Peripheral/src/ch32v20x_dma.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v20x_dma.o
+ .debug_frame   0x0000000000000000      0x174 ./Peripheral/src/ch32v20x_dma.o
  .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_exti.o
  .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_exti.o
  .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_exti.o
@@ -497,6 +521,8 @@ Discarded input sections
                 0x0000000000000000       0x5a ./Peripheral/src/ch32v20x_gpio.o
  .text.GPIO_ReadOutputData
                 0x0000000000000000       0x48 ./Peripheral/src/ch32v20x_gpio.o
+ .text.GPIO_SetBits
+                0x0000000000000000       0x42 ./Peripheral/src/ch32v20x_gpio.o
  .text.GPIO_ResetBits
                 0x0000000000000000       0x42 ./Peripheral/src/ch32v20x_gpio.o
  .text.GPIO_Write
@@ -696,6 +722,10 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_rcc.o
  .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_rcc.o
  .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_rcc.o
+ .data.APBAHBPrescTable
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v20x_rcc.o
+ .sdata.ADCPrescTable
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v20x_rcc.o
  .text.RCC_DeInit
                 0x0000000000000000       0x76 ./Peripheral/src/ch32v20x_rcc.o
  .text.RCC_HSEConfig
@@ -732,6 +762,8 @@ Discarded input sections
                 0x0000000000000000       0x24 ./Peripheral/src/ch32v20x_rcc.o
  .text.RCC_RTCCLKCmd
                 0x0000000000000000       0x3c ./Peripheral/src/ch32v20x_rcc.o
+ .text.RCC_GetClocksFreq
+                0x0000000000000000      0x248 ./Peripheral/src/ch32v20x_rcc.o
  .text.RCC_APB2PeriphResetCmd
                 0x0000000000000000       0x46 ./Peripheral/src/ch32v20x_rcc.o
  .text.RCC_APB1PeriphResetCmd
@@ -1048,14 +1080,20 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_DeInit
                 0x0000000000000000       0xc8 ./Peripheral/src/ch32v20x_usart.o
+ .text.USART_Init
+                0x0000000000000000      0x1b8 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_StructInit
                 0x0000000000000000       0x46 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_ClockInit
                 0x0000000000000000       0x82 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_ClockStructInit
                 0x0000000000000000       0x32 ./Peripheral/src/ch32v20x_usart.o
+ .text.USART_Cmd
+                0x0000000000000000       0x58 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_ITConfig
                 0x0000000000000000       0xc4 ./Peripheral/src/ch32v20x_usart.o
+ .text.USART_DMACmd
+                0x0000000000000000       0x68 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_SetAddress
                 0x0000000000000000       0x52 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_WakeUpConfig
@@ -1088,10 +1126,21 @@ Discarded input sections
                 0x0000000000000000       0x50 ./Peripheral/src/ch32v20x_usart.o
  .text.USART_GetFlagStatus
                 0x0000000000000000       0x44 ./Peripheral/src/ch32v20x_usart.o
+ .text.USART_ClearFlag
+                0x0000000000000000       0x2c ./Peripheral/src/ch32v20x_usart.o
  .text.USART_GetITStatus
                 0x0000000000000000       0xfa ./Peripheral/src/ch32v20x_usart.o
  .text.USART_ClearITPendingBit
                 0x0000000000000000       0x4c ./Peripheral/src/ch32v20x_usart.o
+ .debug_info    0x0000000000000000     0x1284 ./Peripheral/src/ch32v20x_usart.o
+ .debug_abbrev  0x0000000000000000      0x2c2 ./Peripheral/src/ch32v20x_usart.o
+ .debug_aranges
+                0x0000000000000000       0xf0 ./Peripheral/src/ch32v20x_usart.o
+ .debug_ranges  0x0000000000000000       0xe0 ./Peripheral/src/ch32v20x_usart.o
+ .debug_line    0x0000000000000000      0xc33 ./Peripheral/src/ch32v20x_usart.o
+ .debug_str     0x0000000000000000      0xadf ./Peripheral/src/ch32v20x_usart.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v20x_usart.o
+ .debug_frame   0x0000000000000000      0x37c ./Peripheral/src/ch32v20x_usart.o
  .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_wwdg.o
  .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_wwdg.o
  .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v20x_wwdg.o
@@ -1520,7 +1569,7 @@ END GROUP
  .vector        0x0000000000000004       0xfc ./Startup/startup_ch32v20x_D6.o
                 0x0000000000000100                . = ALIGN (0x40)
 
-.text           0x0000000000000100     0x2800
+.text           0x0000000000000100     0x1c8c
                 0x0000000000000100                . = ALIGN (0x4)
  *(.text)
  *(.text.*)
@@ -1537,213 +1586,174 @@ END GROUP
                 0x00000000000002dc      0x204 ./User/USB_Device/ch32v20x_usbfs_device.o
                 0x00000000000002dc                USBFS_Endp_DataUp
  .text.USBFS_IRQHandler
-                0x00000000000004e0      0xcdc ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x00000000000004e0      0xd1c ./User/USB_Device/ch32v20x_usbfs_device.o
                 0x00000000000004e0                USBFS_IRQHandler
  .text.RCC_Configuration
-                0x00000000000011bc       0x36 ./User/UART/UART.o
-                0x00000000000011bc                RCC_Configuration
- .text.UART2_CfgInit
-                0x00000000000011f2      0x1a0 ./User/UART/UART.o
-                0x00000000000011f2                UART2_CfgInit
+                0x00000000000011fc       0x36 ./User/UART/UART.o
+                0x00000000000011fc                RCC_Configuration
  .text.UART2_ParaInit
-                0x0000000000001392      0x10a ./User/UART/UART.o
-                0x0000000000001392                UART2_ParaInit
- .text.UART2_DMAInit
-                0x000000000000149c      0x12e ./User/UART/UART.o
-                0x000000000000149c                UART2_DMAInit
- .text.UART2_Init
-                0x00000000000015ca       0x9c ./User/UART/UART.o
-                0x00000000000015ca                UART2_Init
- .text.UART2_USB_Init
-                0x0000000000001666       0xc2 ./User/UART/UART.o
-                0x0000000000001666                UART2_USB_Init
+                0x0000000000001232      0x10a ./User/UART/UART.o
+                0x0000000000001232                UART2_ParaInit
  .text.NMI_Handler
-                0x0000000000001728        0x8 ./User/ch32v20x_it.o
-                0x0000000000001728                NMI_Handler
+                0x000000000000133c        0x8 ./User/ch32v20x_it.o
+                0x000000000000133c                NMI_Handler
  .text.TIM2_IRQHandler
-                0x0000000000001730       0xb6 ./User/ch32v20x_it.o
-                0x0000000000001730                TIM2_IRQHandler
+                0x0000000000001344       0xb6 ./User/ch32v20x_it.o
+                0x0000000000001344                TIM2_IRQHandler
  .text.HardFault_Handler
-                0x00000000000017e6        0x8 ./User/ch32v20x_it.o
-                0x00000000000017e6                HardFault_Handler
+                0x00000000000013fa        0x8 ./User/ch32v20x_it.o
+                0x00000000000013fa                HardFault_Handler
  .text.GPIO_Toggle_INIT
-                0x00000000000017ee       0x44 ./User/main.o
-                0x00000000000017ee                GPIO_Toggle_INIT
- .text.main     0x0000000000001832       0x8c ./User/main.o
-                0x0000000000001832                main
+                0x0000000000001402       0x42 ./User/main.o
+                0x0000000000001402                GPIO_Toggle_INIT
+ .text.main     0x0000000000001444       0x70 ./User/main.o
+                0x0000000000001444                main
  .text.SystemInit
-                0x00000000000018be       0x7c ./User/system_ch32v20x.o
-                0x00000000000018be                SystemInit
+                0x00000000000014b4       0x7c ./User/system_ch32v20x.o
+                0x00000000000014b4                SystemInit
  .text.SetSysClock
-                0x000000000000193a       0x14 ./User/system_ch32v20x.o
+                0x0000000000001530       0x14 ./User/system_ch32v20x.o
  .text.SetSysClockTo96_HSE
-                0x000000000000194e      0x114 ./User/system_ch32v20x.o
+                0x0000000000001544      0x114 ./User/system_ch32v20x.o
  .text.vector_handler
-                0x0000000000001a62        0x2 ./Startup/startup_ch32v20x_D6.o
-                0x0000000000001a62                EXTI2_IRQHandler
-                0x0000000000001a62                TIM1_CC_IRQHandler
-                0x0000000000001a62                SysTick_Handler
-                0x0000000000001a62                PVD_IRQHandler
-                0x0000000000001a62                EXTI3_IRQHandler
-                0x0000000000001a62                EXTI0_IRQHandler
-                0x0000000000001a62                I2C2_EV_IRQHandler
-                0x0000000000001a62                ADC1_2_IRQHandler
-                0x0000000000001a62                Break_Point_Handler
-                0x0000000000001a62                SPI1_IRQHandler
-                0x0000000000001a62                TAMPER_IRQHandler
-                0x0000000000001a62                Ecall_M_Mode_Handler
-                0x0000000000001a62                DMA1_Channel4_IRQHandler
-                0x0000000000001a62                USART3_IRQHandler
-                0x0000000000001a62                RTC_IRQHandler
-                0x0000000000001a62                DMA1_Channel7_IRQHandler
-                0x0000000000001a62                CAN1_RX1_IRQHandler
-                0x0000000000001a62                TIM4_IRQHandler
-                0x0000000000001a62                I2C1_EV_IRQHandler
-                0x0000000000001a62                DMA1_Channel6_IRQHandler
-                0x0000000000001a62                UART4_IRQHandler
-                0x0000000000001a62                TIM3_IRQHandler
-                0x0000000000001a62                RCC_IRQHandler
-                0x0000000000001a62                TIM1_TRG_COM_IRQHandler
-                0x0000000000001a62                DMA1_Channel1_IRQHandler
-                0x0000000000001a62                EXTI15_10_IRQHandler
-                0x0000000000001a62                DMA1_Channel8_IRQHandler
-                0x0000000000001a62                EXTI9_5_IRQHandler
-                0x0000000000001a62                SPI2_IRQHandler
-                0x0000000000001a62                DMA1_Channel5_IRQHandler
-                0x0000000000001a62                EXTI4_IRQHandler
-                0x0000000000001a62                USB_LP_CAN1_RX0_IRQHandler
-                0x0000000000001a62                USB_HP_CAN1_TX_IRQHandler
-                0x0000000000001a62                DMA1_Channel3_IRQHandler
-                0x0000000000001a62                TIM1_UP_IRQHandler
-                0x0000000000001a62                WWDG_IRQHandler
-                0x0000000000001a62                Ecall_U_Mode_Handler
-                0x0000000000001a62                SW_Handler
-                0x0000000000001a62                TIM1_BRK_IRQHandler
-                0x0000000000001a62                EXTI1_IRQHandler
-                0x0000000000001a62                RTCAlarm_IRQHandler
-                0x0000000000001a62                USART2_IRQHandler
-                0x0000000000001a62                I2C2_ER_IRQHandler
-                0x0000000000001a62                DMA1_Channel2_IRQHandler
-                0x0000000000001a62                CAN1_SCE_IRQHandler
-                0x0000000000001a62                FLASH_IRQHandler
-                0x0000000000001a62                USBFSWakeUp_IRQHandler
-                0x0000000000001a62                USART1_IRQHandler
-                0x0000000000001a62                I2C1_ER_IRQHandler
-                0x0000000000001a62                USBWakeUp_IRQHandler
+                0x0000000000001658        0x2 ./Startup/startup_ch32v20x_D6.o
+                0x0000000000001658                EXTI2_IRQHandler
+                0x0000000000001658                TIM1_CC_IRQHandler
+                0x0000000000001658                SysTick_Handler
+                0x0000000000001658                PVD_IRQHandler
+                0x0000000000001658                EXTI3_IRQHandler
+                0x0000000000001658                EXTI0_IRQHandler
+                0x0000000000001658                I2C2_EV_IRQHandler
+                0x0000000000001658                ADC1_2_IRQHandler
+                0x0000000000001658                Break_Point_Handler
+                0x0000000000001658                SPI1_IRQHandler
+                0x0000000000001658                TAMPER_IRQHandler
+                0x0000000000001658                Ecall_M_Mode_Handler
+                0x0000000000001658                DMA1_Channel4_IRQHandler
+                0x0000000000001658                USART3_IRQHandler
+                0x0000000000001658                RTC_IRQHandler
+                0x0000000000001658                DMA1_Channel7_IRQHandler
+                0x0000000000001658                CAN1_RX1_IRQHandler
+                0x0000000000001658                TIM4_IRQHandler
+                0x0000000000001658                I2C1_EV_IRQHandler
+                0x0000000000001658                DMA1_Channel6_IRQHandler
+                0x0000000000001658                UART4_IRQHandler
+                0x0000000000001658                TIM3_IRQHandler
+                0x0000000000001658                RCC_IRQHandler
+                0x0000000000001658                TIM1_TRG_COM_IRQHandler
+                0x0000000000001658                DMA1_Channel1_IRQHandler
+                0x0000000000001658                EXTI15_10_IRQHandler
+                0x0000000000001658                DMA1_Channel8_IRQHandler
+                0x0000000000001658                EXTI9_5_IRQHandler
+                0x0000000000001658                SPI2_IRQHandler
+                0x0000000000001658                DMA1_Channel5_IRQHandler
+                0x0000000000001658                EXTI4_IRQHandler
+                0x0000000000001658                USB_LP_CAN1_RX0_IRQHandler
+                0x0000000000001658                USB_HP_CAN1_TX_IRQHandler
+                0x0000000000001658                DMA1_Channel3_IRQHandler
+                0x0000000000001658                TIM1_UP_IRQHandler
+                0x0000000000001658                WWDG_IRQHandler
+                0x0000000000001658                Ecall_U_Mode_Handler
+                0x0000000000001658                SW_Handler
+                0x0000000000001658                TIM1_BRK_IRQHandler
+                0x0000000000001658                EXTI1_IRQHandler
+                0x0000000000001658                RTCAlarm_IRQHandler
+                0x0000000000001658                USART2_IRQHandler
+                0x0000000000001658                I2C2_ER_IRQHandler
+                0x0000000000001658                DMA1_Channel2_IRQHandler
+                0x0000000000001658                CAN1_SCE_IRQHandler
+                0x0000000000001658                FLASH_IRQHandler
+                0x0000000000001658                USBFSWakeUp_IRQHandler
+                0x0000000000001658                USART1_IRQHandler
+                0x0000000000001658                I2C1_ER_IRQHandler
+                0x0000000000001658                USBWakeUp_IRQHandler
  .text.handle_reset
-                0x0000000000001a64       0x8a ./Startup/startup_ch32v20x_D6.o
-                0x0000000000001a64                handle_reset
- .text.DMA_DeInit
-                0x0000000000001aee      0x158 ./Peripheral/src/ch32v20x_dma.o
-                0x0000000000001aee                DMA_DeInit
- .text.DMA_Init
-                0x0000000000001c46       0xa8 ./Peripheral/src/ch32v20x_dma.o
-                0x0000000000001c46                DMA_Init
- .text.DMA_Cmd  0x0000000000001cee       0x40 ./Peripheral/src/ch32v20x_dma.o
-                0x0000000000001cee                DMA_Cmd
+                0x000000000000165a       0x86 ./Startup/startup_ch32v20x_D6.o
+                0x000000000000165a                handle_reset
  .text.GPIO_Init
-                0x0000000000001d2e      0x260 ./Peripheral/src/ch32v20x_gpio.o
-                0x0000000000001d2e                GPIO_Init
- .text.GPIO_SetBits
-                0x0000000000001f8e       0x3e ./Peripheral/src/ch32v20x_gpio.o
-                0x0000000000001f8e                GPIO_SetBits
+                0x00000000000016e0      0x260 ./Peripheral/src/ch32v20x_gpio.o
+                0x00000000000016e0                GPIO_Init
  .text.GPIO_WriteBit
-                0x0000000000001fcc       0x54 ./Peripheral/src/ch32v20x_gpio.o
-                0x0000000000001fcc                GPIO_WriteBit
+                0x0000000000001940       0x54 ./Peripheral/src/ch32v20x_gpio.o
+                0x0000000000001940                GPIO_WriteBit
  .text.RCC_USBCLKConfig
-                0x0000000000002020       0x3c ./Peripheral/src/ch32v20x_rcc.o
-                0x0000000000002020                RCC_USBCLKConfig
- .text.RCC_GetClocksFreq
-                0x000000000000205c      0x248 ./Peripheral/src/ch32v20x_rcc.o
-                0x000000000000205c                RCC_GetClocksFreq
+                0x0000000000001994       0x3c ./Peripheral/src/ch32v20x_rcc.o
+                0x0000000000001994                RCC_USBCLKConfig
  .text.RCC_AHBPeriphClockCmd
-                0x00000000000022a4       0x46 ./Peripheral/src/ch32v20x_rcc.o
-                0x00000000000022a4                RCC_AHBPeriphClockCmd
+                0x00000000000019d0       0x46 ./Peripheral/src/ch32v20x_rcc.o
+                0x00000000000019d0                RCC_AHBPeriphClockCmd
  .text.RCC_APB2PeriphClockCmd
-                0x00000000000022ea       0x46 ./Peripheral/src/ch32v20x_rcc.o
-                0x00000000000022ea                RCC_APB2PeriphClockCmd
+                0x0000000000001a16       0x46 ./Peripheral/src/ch32v20x_rcc.o
+                0x0000000000001a16                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x0000000000002330       0x46 ./Peripheral/src/ch32v20x_rcc.o
-                0x0000000000002330                RCC_APB1PeriphClockCmd
- .text.USART_Init
-                0x0000000000002376      0x1b2 ./Peripheral/src/ch32v20x_usart.o
-                0x0000000000002376                USART_Init
- .text.USART_Cmd
-                0x0000000000002528       0x58 ./Peripheral/src/ch32v20x_usart.o
-                0x0000000000002528                USART_Cmd
- .text.USART_DMACmd
-                0x0000000000002580       0x68 ./Peripheral/src/ch32v20x_usart.o
-                0x0000000000002580                USART_DMACmd
- .text.USART_ClearFlag
-                0x00000000000025e8       0x2c ./Peripheral/src/ch32v20x_usart.o
-                0x00000000000025e8                USART_ClearFlag
+                0x0000000000001a5c       0x46 ./Peripheral/src/ch32v20x_rcc.o
+                0x0000000000001a5c                RCC_APB1PeriphClockCmd
  .text.Delay_Init
-                0x0000000000002614       0x46 ./Debug/debug.o
-                0x0000000000002614                Delay_Init
+                0x0000000000001aa2       0x46 ./Debug/debug.o
+                0x0000000000001aa2                Delay_Init
  .text.Delay_Us
-                0x000000000000265a       0x84 ./Debug/debug.o
-                0x000000000000265a                Delay_Us
+                0x0000000000001ae8       0x84 ./Debug/debug.o
+                0x0000000000001ae8                Delay_Us
  .text.Delay_Ms
-                0x00000000000026de       0x84 ./Debug/debug.o
-                0x00000000000026de                Delay_Ms
- .text.memcpy   0x0000000000002762       0xb2 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-memcpy.o)
-                0x0000000000002762                memcpy
- .text.strlen   0x0000000000002814       0x12 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-strlen.o)
-                0x0000000000002814                strlen
+                0x0000000000001b6c       0x84 ./Debug/debug.o
+                0x0000000000001b6c                Delay_Ms
+ .text.memcpy   0x0000000000001bf0       0xb2 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-memcpy.o)
+                0x0000000000001bf0                memcpy
+ .text.strlen   0x0000000000001ca2       0x12 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-strlen.o)
+                0x0000000000001ca2                strlen
  *(.rodata)
- *fill*         0x0000000000002826        0x2 
- .rodata        0x0000000000002828        0xe ./User/main.o
+ .rodata        0x0000000000001cb4        0xe ./User/main.o
  *(.rodata*)
- *fill*         0x0000000000002836        0x2 
+ *fill*         0x0000000000001cc2        0x2 
  .rodata.USBFS_IRQHandler
-                0x0000000000002838       0x30 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000000001cc4       0x30 ./User/USB_Device/ch32v20x_usbfs_device.o
  .rodata.MyDevDescr
-                0x0000000000002868       0x12 ./User/USB_Device/usb_desc.o
-                0x0000000000002868                MyDevDescr
- *fill*         0x000000000000287a        0x2 
+                0x0000000000001cf4       0x12 ./User/USB_Device/usb_desc.o
+                0x0000000000001cf4                MyDevDescr
+ *fill*         0x0000000000001d06        0x2 
  .rodata.MyCfgDescr
-                0x000000000000287c       0x43 ./User/USB_Device/usb_desc.o
-                0x000000000000287c                MyCfgDescr
- *fill*         0x00000000000028bf        0x1 
+                0x0000000000001d08       0x43 ./User/USB_Device/usb_desc.o
+                0x0000000000001d08                MyCfgDescr
+ *fill*         0x0000000000001d4b        0x1 
  .rodata.MyManuInfo
-                0x00000000000028c0        0xe ./User/USB_Device/usb_desc.o
-                0x00000000000028c0                MyManuInfo
- *fill*         0x00000000000028ce        0x2 
+                0x0000000000001d4c        0xe ./User/USB_Device/usb_desc.o
+                0x0000000000001d4c                MyManuInfo
+ *fill*         0x0000000000001d5a        0x2 
  .rodata.MyProdInfo
-                0x00000000000028d0       0x16 ./User/USB_Device/usb_desc.o
-                0x00000000000028d0                MyProdInfo
- *fill*         0x00000000000028e6        0x2 
+                0x0000000000001d5c       0x16 ./User/USB_Device/usb_desc.o
+                0x0000000000001d5c                MyProdInfo
+ *fill*         0x0000000000001d72        0x2 
  .rodata.MySerNumInfo
-                0x00000000000028e8       0x16 ./User/USB_Device/usb_desc.o
-                0x00000000000028e8                MySerNumInfo
+                0x0000000000001d74       0x16 ./User/USB_Device/usb_desc.o
+                0x0000000000001d74                MySerNumInfo
  *(.gnu.linkonce.t.*)
-                0x0000000000002900                . = ALIGN (0x4)
- *fill*         0x00000000000028fe        0x2 
+                0x0000000000001d8c                . = ALIGN (0x4)
+ *fill*         0x0000000000001d8a        0x2 
 
-.rela.dyn       0x0000000000002900        0x0
- .rela.init     0x0000000000002900        0x0 ./User/USB_Device/ch32v20x_usbfs_device.o
- .rela.vector   0x0000000000002900        0x0 ./User/USB_Device/ch32v20x_usbfs_device.o
+.rela.dyn       0x0000000000001d8c        0x0
+ .rela.init     0x0000000000001d8c        0x0 ./User/USB_Device/ch32v20x_usbfs_device.o
+ .rela.vector   0x0000000000001d8c        0x0 ./User/USB_Device/ch32v20x_usbfs_device.o
  .rela.text.handle_reset
-                0x0000000000002900        0x0 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000000001d8c        0x0 ./User/USB_Device/ch32v20x_usbfs_device.o
 
-.fini           0x0000000000002900        0x0
+.fini           0x0000000000001d8c        0x0
  *(SORT_NONE(.fini))
-                0x0000000000002900                . = ALIGN (0x4)
+                0x0000000000001d8c                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x0000000000002900        0x0
+.preinit_array  0x0000000000001d8c        0x0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x0000000000002900        0x0
+.init_array     0x0000000000001d8c        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x0000000000002900        0x0
+.fini_array     0x0000000000001d8c        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -1763,122 +1773,116 @@ END GROUP
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
 
-.dalign         0x0000000020000000        0x0 load address 0x0000000000002900
+.dalign         0x0000000020000000        0x0 load address 0x0000000000001d8c
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                PROVIDE (_data_vma = .)
 
-.dlalign        0x0000000000002900        0x0
-                0x0000000000002900                . = ALIGN (0x4)
-                0x0000000000002900                PROVIDE (_data_lma = .)
+.dlalign        0x0000000000001d8c        0x0
+                0x0000000000001d8c                . = ALIGN (0x4)
+                0x0000000000001d8c                PROVIDE (_data_lma = .)
 
-.data           0x0000000020000000       0x20 load address 0x0000000000002900
+.data           0x0000000020000000        0x8 load address 0x0000000000001d8c
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
- .data.APBAHBPrescTable
-                0x0000000020000000       0x10 ./Peripheral/src/ch32v20x_rcc.o
  *(.gnu.linkonce.d.*)
-                0x0000000020000010                . = ALIGN (0x8)
-                0x0000000020000810                PROVIDE (__global_pointer$ = (. + 0x800))
+                0x0000000020000000                . = ALIGN (0x8)
+                0x0000000020000800                PROVIDE (__global_pointer$ = (. + 0x800))
  *(.sdata .sdata.*)
  .sdata.SystemCoreClock
-                0x0000000020000010        0x4 ./User/system_ch32v20x.o
-                0x0000000020000010                SystemCoreClock
- .sdata.ADCPrescTable
-                0x0000000020000014        0x4 ./Peripheral/src/ch32v20x_rcc.o
+                0x0000000020000000        0x4 ./User/system_ch32v20x.o
+                0x0000000020000000                SystemCoreClock
  *(.sdata2.*)
  .sdata2.MyLangDescr
-                0x0000000020000018        0x4 ./User/USB_Device/usb_desc.o
-                0x0000000020000018                MyLangDescr
+                0x0000000020000004        0x4 ./User/USB_Device/usb_desc.o
+                0x0000000020000004                MyLangDescr
  *(.gnu.linkonce.s.*)
-                0x0000000020000020                . = ALIGN (0x8)
- *fill*         0x000000002000001c        0x4 
+                0x0000000020000008                . = ALIGN (0x8)
  *(.srodata.cst16)
  *(.srodata.cst8)
  *(.srodata.cst4)
  *(.srodata.cst2)
  *(.srodata .srodata.*)
-                0x0000000020000020                . = ALIGN (0x4)
-                0x0000000020000020                PROVIDE (_edata = .)
+                0x0000000020000008                . = ALIGN (0x4)
+                0x0000000020000008                PROVIDE (_edata = .)
 
-.bss            0x0000000020000020     0x1130 load address 0x0000000000002920
-                0x0000000020000020                . = ALIGN (0x4)
-                0x0000000020000020                PROVIDE (_sbss = .)
+.bss            0x0000000020000008      0x938 load address 0x0000000000001d94
+                0x0000000020000008                . = ALIGN (0x4)
+                0x0000000020000008                PROVIDE (_sbss = .)
  *(.sbss*)
+ .sbss.COM_Cfg  0x0000000020000008        0x8 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000008                COM_Cfg
  .sbss.pUSBFS_Descr
-                0x0000000020000020        0x4 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000020                pUSBFS_Descr
+                0x0000000020000010        0x4 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000010                pUSBFS_Descr
  .sbss.USBFS_SetupReqCode
-                0x0000000020000024        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000024                USBFS_SetupReqCode
+                0x0000000020000014        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000014                USBFS_SetupReqCode
  .sbss.USBFS_SetupReqType
-                0x0000000020000025        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000025                USBFS_SetupReqType
+                0x0000000020000015        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000015                USBFS_SetupReqType
  .sbss.USBFS_SetupReqValue
-                0x0000000020000026        0x2 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000026                USBFS_SetupReqValue
+                0x0000000020000016        0x2 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000016                USBFS_SetupReqValue
  .sbss.USBFS_SetupReqIndex
-                0x0000000020000028        0x2 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000028                USBFS_SetupReqIndex
+                0x0000000020000018        0x2 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000018                USBFS_SetupReqIndex
  .sbss.USBFS_SetupReqLen
-                0x000000002000002a        0x2 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x000000002000002a                USBFS_SetupReqLen
+                0x000000002000001a        0x2 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x000000002000001a                USBFS_SetupReqLen
  .sbss.USBFS_DevConfig
-                0x000000002000002c        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x000000002000002c                USBFS_DevConfig
+                0x000000002000001c        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x000000002000001c                USBFS_DevConfig
  .sbss.USBFS_DevAddr
-                0x000000002000002d        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x000000002000002d                USBFS_DevAddr
+                0x000000002000001d        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x000000002000001d                USBFS_DevAddr
  .sbss.USBFS_DevSleepStatus
-                0x000000002000002e        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x000000002000002e                USBFS_DevSleepStatus
+                0x000000002000001e        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x000000002000001e                USBFS_DevSleepStatus
  .sbss.USBFS_DevEnumStatus
-                0x000000002000002f        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x000000002000002f                USBFS_DevEnumStatus
+                0x000000002000001f        0x1 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x000000002000001f                USBFS_DevEnumStatus
  .sbss.USBFS_Endp_Busy
-                0x0000000020000030        0x8 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000030                USBFS_Endp_Busy
+                0x0000000020000020        0x8 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000020                USBFS_Endp_Busy
  .sbss.UARTx_Rx_DMACurCount
-                0x0000000020000038        0x4 ./User/UART/UART.o
-                0x0000000020000038                UARTx_Rx_DMACurCount
+                0x0000000020000028        0x4 ./User/UART/UART.o
+                0x0000000020000028                UARTx_Rx_DMACurCount
  .sbss.UARTx_Rx_DMALastCount
-                0x000000002000003c        0x4 ./User/UART/UART.o
-                0x000000002000003c                UARTx_Rx_DMALastCount
- .sbss.tog.5045
-                0x0000000020000040        0x1 ./User/ch32v20x_it.o
+                0x000000002000002c        0x4 ./User/UART/UART.o
+                0x000000002000002c                UARTx_Rx_DMALastCount
+ .sbss.tog.5046
+                0x0000000020000030        0x1 ./User/ch32v20x_it.o
  .sbss.MCU_Version
-                0x0000000020000041        0x1 ./Peripheral/src/ch32v20x_gpio.o
-                0x0000000020000041                MCU_Version
- .sbss.p_us     0x0000000020000042        0x1 ./Debug/debug.o
- *fill*         0x0000000020000043        0x1 
- .sbss.p_ms     0x0000000020000044        0x2 ./Debug/debug.o
+                0x0000000020000031        0x1 ./Peripheral/src/ch32v20x_gpio.o
+                0x0000000020000031                MCU_Version
+ .sbss.p_us     0x0000000020000032        0x1 ./Debug/debug.o
+ *fill*         0x0000000020000033        0x1 
+ .sbss.p_ms     0x0000000020000034        0x2 ./Debug/debug.o
  *(.gnu.linkonce.sb.*)
  *(.bss*)
- *fill*         0x0000000020000046        0x2 
+ *fill*         0x0000000020000036        0x2 
  .bss.USBFS_EP0_Buf
-                0x0000000020000048       0x40 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000048                USBFS_EP0_Buf
+                0x0000000020000038       0x40 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000038                USBFS_EP0_Buf
  .bss.USBFS_EP1_Buf
-                0x0000000020000088       0x40 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000088                USBFS_EP1_Buf
+                0x0000000020000078       0x40 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x0000000020000078                USBFS_EP1_Buf
  .bss.USBFS_EP3_Buf
-                0x00000000200000c8       0x40 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x00000000200000c8                USBFS_EP3_Buf
- .bss.USBFS_RX  0x0000000020000108      0x400 ./User/USB_Device/ch32v20x_usbfs_device.o
-                0x0000000020000108                USBFS_RX
- .bss.Uart      0x0000000020000508       0x46 ./User/UART/UART.o
-                0x0000000020000508                Uart
- *fill*         0x000000002000054e        0x2 
+                0x00000000200000b8       0x40 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x00000000200000b8                USBFS_EP3_Buf
+ .bss.USBFS_RX  0x00000000200000f8      0x400 ./User/USB_Device/ch32v20x_usbfs_device.o
+                0x00000000200000f8                USBFS_RX
+ .bss.Uart      0x00000000200004f8       0x46 ./User/UART/UART.o
+                0x00000000200004f8                Uart
+ *fill*         0x000000002000053e        0x2 
  .bss.UART2_Tx_Buf
-                0x0000000020000550      0x400 ./User/UART/UART.o
-                0x0000000020000550                UART2_Tx_Buf
- .bss.UART2_Rx_Buf
-                0x0000000020000950      0x800 ./User/UART/UART.o
-                0x0000000020000950                UART2_Rx_Buf
+                0x0000000020000540      0x400 ./User/UART/UART.o
+                0x0000000020000540                UART2_Tx_Buf
  *(.gnu.linkonce.b.*)
  *(COMMON*)
-                0x0000000020001150                . = ALIGN (0x4)
-                0x0000000020001150                PROVIDE (_ebss = .)
-                0x0000000020001150                PROVIDE (_end = _ebss)
+                0x0000000020000940                . = ALIGN (0x4)
+                0x0000000020000940                PROVIDE (_ebss = .)
+                0x0000000020000940                PROVIDE (_end = _ebss)
                 [!provide]                        PROVIDE (end = .)
 
 .stack          0x0000000020004800      0x800
@@ -1890,21 +1894,19 @@ END GROUP
                 0x0000000020005000                PROVIDE (_eusrstack = .)
 OUTPUT(USB_Test.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000     0xbb07
- .debug_info    0x0000000000000000     0x1811 ./User/USB_Device/ch32v20x_usbfs_device.o
- .debug_info    0x0000000000001811      0x9ff ./User/USB_Device/usb_desc.o
- .debug_info    0x0000000000002210     0x1e33 ./User/UART/UART.o
- .debug_info    0x0000000000004043     0x10a5 ./User/ch32v20x_it.o
- .debug_info    0x00000000000050e8      0xe49 ./User/main.o
- .debug_info    0x0000000000005f31      0xb67 ./User/system_ch32v20x.o
- .debug_info    0x0000000000006a98       0x22 ./Startup/startup_ch32v20x_D6.o
- .debug_info    0x0000000000006aba      0xd36 ./Peripheral/src/ch32v20x_dma.o
- .debug_info    0x00000000000077f0     0x103b ./Peripheral/src/ch32v20x_gpio.o
- .debug_info    0x000000000000882b     0x1228 ./Peripheral/src/ch32v20x_rcc.o
- .debug_info    0x0000000000009a53     0x1284 ./Peripheral/src/ch32v20x_usart.o
- .debug_info    0x000000000000acd7      0xe30 ./Debug/debug.o
+.debug_info     0x0000000000000000     0x9b8b
+ .debug_info    0x0000000000000000     0x182b ./User/USB_Device/ch32v20x_usbfs_device.o
+ .debug_info    0x000000000000182b      0x9ff ./User/USB_Device/usb_desc.o
+ .debug_info    0x000000000000222a     0x1e3f ./User/UART/UART.o
+ .debug_info    0x0000000000004069     0x10b1 ./User/ch32v20x_it.o
+ .debug_info    0x000000000000511a      0xe55 ./User/main.o
+ .debug_info    0x0000000000005f6f      0xb67 ./User/system_ch32v20x.o
+ .debug_info    0x0000000000006ad6       0x22 ./Startup/startup_ch32v20x_D6.o
+ .debug_info    0x0000000000006af8     0x103b ./Peripheral/src/ch32v20x_gpio.o
+ .debug_info    0x0000000000007b33     0x1228 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_info    0x0000000000008d5b      0xe30 ./Debug/debug.o
 
-.debug_abbrev   0x0000000000000000     0x1eb7
+.debug_abbrev   0x0000000000000000     0x1942
  .debug_abbrev  0x0000000000000000      0x366 ./User/USB_Device/ch32v20x_usbfs_device.o
  .debug_abbrev  0x0000000000000366      0x1c5 ./User/USB_Device/usb_desc.o
  .debug_abbrev  0x000000000000052b      0x3a6 ./User/UART/UART.o
@@ -1912,13 +1914,11 @@ OUTPUT(USB_Test.elf elf32-littleriscv)
  .debug_abbrev  0x0000000000000b19      0x276 ./User/main.o
  .debug_abbrev  0x0000000000000d8f      0x29e ./User/system_ch32v20x.o
  .debug_abbrev  0x000000000000102d       0x12 ./Startup/startup_ch32v20x_D6.o
- .debug_abbrev  0x000000000000103f      0x2b3 ./Peripheral/src/ch32v20x_dma.o
- .debug_abbrev  0x00000000000012f2      0x326 ./Peripheral/src/ch32v20x_gpio.o
- .debug_abbrev  0x0000000000001618      0x2fa ./Peripheral/src/ch32v20x_rcc.o
- .debug_abbrev  0x0000000000001912      0x2c2 ./Peripheral/src/ch32v20x_usart.o
- .debug_abbrev  0x0000000000001bd4      0x2e3 ./Debug/debug.o
+ .debug_abbrev  0x000000000000103f      0x326 ./Peripheral/src/ch32v20x_gpio.o
+ .debug_abbrev  0x0000000000001365      0x2fa ./Peripheral/src/ch32v20x_rcc.o
+ .debug_abbrev  0x000000000000165f      0x2e3 ./Debug/debug.o
 
-.debug_aranges  0x0000000000000000      0x508
+.debug_aranges  0x0000000000000000      0x3a8
  .debug_aranges
                 0x0000000000000000       0x48 ./User/USB_Device/ch32v20x_usbfs_device.o
  .debug_aranges
@@ -1934,67 +1934,55 @@ OUTPUT(USB_Test.elf elf32-littleriscv)
  .debug_aranges
                 0x0000000000000150       0x30 ./Startup/startup_ch32v20x_D6.o
  .debug_aranges
-                0x0000000000000180       0x70 ./Peripheral/src/ch32v20x_dma.o
+                0x0000000000000180       0xb0 ./Peripheral/src/ch32v20x_gpio.o
  .debug_aranges
-                0x00000000000001f0       0xb0 ./Peripheral/src/ch32v20x_gpio.o
+                0x0000000000000230      0x128 ./Peripheral/src/ch32v20x_rcc.o
  .debug_aranges
-                0x00000000000002a0      0x128 ./Peripheral/src/ch32v20x_rcc.o
- .debug_aranges
-                0x00000000000003c8       0xf0 ./Peripheral/src/ch32v20x_usart.o
- .debug_aranges
-                0x00000000000004b8       0x50 ./Debug/debug.o
+                0x0000000000000358       0x50 ./Debug/debug.o
 
-.debug_ranges   0x0000000000000000      0x448
+.debug_ranges   0x0000000000000000      0x308
  .debug_ranges  0x0000000000000000       0x38 ./User/USB_Device/ch32v20x_usbfs_device.o
  .debug_ranges  0x0000000000000038       0x50 ./User/UART/UART.o
  .debug_ranges  0x0000000000000088       0x20 ./User/ch32v20x_it.o
  .debug_ranges  0x00000000000000a8       0x18 ./User/main.o
  .debug_ranges  0x00000000000000c0       0x28 ./User/system_ch32v20x.o
  .debug_ranges  0x00000000000000e8       0x28 ./Startup/startup_ch32v20x_D6.o
- .debug_ranges  0x0000000000000110       0x60 ./Peripheral/src/ch32v20x_dma.o
- .debug_ranges  0x0000000000000170       0xa0 ./Peripheral/src/ch32v20x_gpio.o
- .debug_ranges  0x0000000000000210      0x118 ./Peripheral/src/ch32v20x_rcc.o
- .debug_ranges  0x0000000000000328       0xe0 ./Peripheral/src/ch32v20x_usart.o
- .debug_ranges  0x0000000000000408       0x40 ./Debug/debug.o
+ .debug_ranges  0x0000000000000110       0xa0 ./Peripheral/src/ch32v20x_gpio.o
+ .debug_ranges  0x00000000000001b0      0x118 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_ranges  0x00000000000002c8       0x40 ./Debug/debug.o
 
-.debug_line     0x0000000000000000     0x6dd3
- .debug_line    0x0000000000000000     0x1524 ./User/USB_Device/ch32v20x_usbfs_device.o
- .debug_line    0x0000000000001524      0x20b ./User/USB_Device/usb_desc.o
- .debug_line    0x000000000000172f      0xeb0 ./User/UART/UART.o
- .debug_line    0x00000000000025df      0x3d9 ./User/ch32v20x_it.o
- .debug_line    0x00000000000029b8      0x468 ./User/main.o
- .debug_line    0x0000000000002e20      0x5f3 ./User/system_ch32v20x.o
- .debug_line    0x0000000000003413      0x150 ./Startup/startup_ch32v20x_D6.o
- .debug_line    0x0000000000003563      0x70f ./Peripheral/src/ch32v20x_dma.o
- .debug_line    0x0000000000003c72     0x10aa ./Peripheral/src/ch32v20x_gpio.o
- .debug_line    0x0000000000004d1c      0xec3 ./Peripheral/src/ch32v20x_rcc.o
- .debug_line    0x0000000000005bdf      0xc33 ./Peripheral/src/ch32v20x_usart.o
- .debug_line    0x0000000000006812      0x5c1 ./Debug/debug.o
+.debug_line     0x0000000000000000     0x5a95
+ .debug_line    0x0000000000000000     0x1532 ./User/USB_Device/ch32v20x_usbfs_device.o
+ .debug_line    0x0000000000001532      0x20b ./User/USB_Device/usb_desc.o
+ .debug_line    0x000000000000173d      0xeb0 ./User/UART/UART.o
+ .debug_line    0x00000000000025ed      0x3d9 ./User/ch32v20x_it.o
+ .debug_line    0x00000000000029c6      0x45e ./User/main.o
+ .debug_line    0x0000000000002e24      0x5f3 ./User/system_ch32v20x.o
+ .debug_line    0x0000000000003417      0x150 ./Startup/startup_ch32v20x_D6.o
+ .debug_line    0x0000000000003567     0x10aa ./Peripheral/src/ch32v20x_gpio.o
+ .debug_line    0x0000000000004611      0xec3 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_line    0x00000000000054d4      0x5c1 ./Debug/debug.o
 
-.debug_str      0x0000000000000000     0x23cd
- .debug_str     0x0000000000000000     0x1014 ./User/USB_Device/ch32v20x_usbfs_device.o
-                                       0x10a1 (size before relaxing)
- .debug_str     0x0000000000001014       0x1e ./User/USB_Device/usb_desc.o
+.debug_str      0x0000000000000000     0x1efa
+ .debug_str     0x0000000000000000     0x101c ./User/USB_Device/ch32v20x_usbfs_device.o
+                                       0x10a9 (size before relaxing)
+ .debug_str     0x000000000000101c       0x1e ./User/USB_Device/usb_desc.o
                                         0x5fd (size before relaxing)
- .debug_str     0x0000000000001032      0x560 ./User/UART/UART.o
-                                       0x13cb (size before relaxing)
- .debug_str     0x0000000000001592       0x44 ./User/ch32v20x_it.o
-                                        0xa6b (size before relaxing)
- .debug_str     0x00000000000015d6       0x37 ./User/main.o
-                                        0x9ef (size before relaxing)
- .debug_str     0x000000000000160d      0x10b ./User/system_ch32v20x.o
+ .debug_str     0x000000000000103a      0x560 ./User/UART/UART.o
+                                       0x13d3 (size before relaxing)
+ .debug_str     0x000000000000159a       0x44 ./User/ch32v20x_it.o
+                                        0xa73 (size before relaxing)
+ .debug_str     0x00000000000015de       0x37 ./User/main.o
+                                        0x9f7 (size before relaxing)
+ .debug_str     0x0000000000001615      0x10b ./User/system_ch32v20x.o
                                         0x6d2 (size before relaxing)
- .debug_str     0x0000000000001718       0x5c ./Startup/startup_ch32v20x_D6.o
+ .debug_str     0x0000000000001720       0x5c ./Startup/startup_ch32v20x_D6.o
                                          0x9e (size before relaxing)
- .debug_str     0x0000000000001774      0x16a ./Peripheral/src/ch32v20x_dma.o
-                                        0x828 (size before relaxing)
- .debug_str     0x00000000000018de      0x279 ./Peripheral/src/ch32v20x_gpio.o
+ .debug_str     0x000000000000177c      0x293 ./Peripheral/src/ch32v20x_gpio.o
                                         0x9c3 (size before relaxing)
- .debug_str     0x0000000000001b57      0x422 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_str     0x0000000000001a0f      0x422 ./Peripheral/src/ch32v20x_rcc.o
                                         0xaf1 (size before relaxing)
- .debug_str     0x0000000000001f79      0x38b ./Peripheral/src/ch32v20x_usart.o
-                                        0xadf (size before relaxing)
- .debug_str     0x0000000000002304       0xc9 ./Debug/debug.o
+ .debug_str     0x0000000000001e31       0xc9 ./Debug/debug.o
                                         0x8ed (size before relaxing)
 
 .comment        0x0000000000000000       0x33
@@ -2005,25 +1993,21 @@ OUTPUT(USB_Test.elf elf32-littleriscv)
  .comment       0x0000000000000033       0x34 ./User/ch32v20x_it.o
  .comment       0x0000000000000033       0x34 ./User/main.o
  .comment       0x0000000000000033       0x34 ./User/system_ch32v20x.o
- .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v20x_dma.o
  .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v20x_gpio.o
  .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v20x_rcc.o
- .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v20x_usart.o
  .comment       0x0000000000000033       0x34 ./Debug/debug.o
 
-.debug_frame    0x0000000000000000     0x10ac
+.debug_frame    0x0000000000000000      0xbbc
  .debug_frame   0x0000000000000000       0xe4 ./User/USB_Device/ch32v20x_usbfs_device.o
  .debug_frame   0x00000000000000e4      0x164 ./User/UART/UART.o
  .debug_frame   0x0000000000000248       0x68 ./User/ch32v20x_it.o
  .debug_frame   0x00000000000002b0       0x50 ./User/main.o
  .debug_frame   0x0000000000000300       0xa0 ./User/system_ch32v20x.o
- .debug_frame   0x00000000000003a0      0x174 ./Peripheral/src/ch32v20x_dma.o
- .debug_frame   0x0000000000000514      0x288 ./Peripheral/src/ch32v20x_gpio.o
- .debug_frame   0x000000000000079c      0x458 ./Peripheral/src/ch32v20x_rcc.o
- .debug_frame   0x0000000000000bf4      0x37c ./Peripheral/src/ch32v20x_usart.o
- .debug_frame   0x0000000000000f70       0xfc ./Debug/debug.o
- .debug_frame   0x000000000000106c       0x20 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-memcpy.o)
- .debug_frame   0x000000000000108c       0x20 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-strlen.o)
+ .debug_frame   0x00000000000003a0      0x288 ./Peripheral/src/ch32v20x_gpio.o
+ .debug_frame   0x0000000000000628      0x458 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_frame   0x0000000000000a80       0xfc ./Debug/debug.o
+ .debug_frame   0x0000000000000b7c       0x20 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x0000000000000b9c       0x20 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-strlen.o)
 
 .stabstr        0x0000000000000000      0x117
  .stabstr       0x0000000000000000      0x117 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libnosys.a(close.o)

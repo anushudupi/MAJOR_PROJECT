@@ -11,7 +11,7 @@
 *******************************************************************************/
 
 #include "ch32v20x_usbfs_device.h"
-
+volatile uint8_t  COM_Cfg[ 8 ];  /* COM port details */
 /*******************************************************************************/
 /* Variable Definition */
 /* Global */
@@ -335,22 +335,38 @@ void USBFS_IRQHandler( void )
                                          1 byte: number of stop bits (0: 1 stop bit; 1: 1.5 stop bit; 2: 2 stop bits).
                                          1 byte: number of parity bits (0: None; 1: Odd; 2: Even; 3: Mark; 4: Space).
                                          1 byte: number of data bits (5,6,7,8,16); */
-                                      Uart.Com_Cfg[ 0 ] = USBFS_EP0_Buf[ 0 ];
-                                      Uart.Com_Cfg[ 1 ] = USBFS_EP0_Buf[ 1 ];
-                                      Uart.Com_Cfg[ 2 ] = USBFS_EP0_Buf[ 2 ];
-                                      Uart.Com_Cfg[ 3 ] = USBFS_EP0_Buf[ 3 ];
-                                      Uart.Com_Cfg[ 4 ] = USBFS_EP0_Buf[ 4 ];
-                                      Uart.Com_Cfg[ 5 ] = USBFS_EP0_Buf[ 5 ];
-                                      Uart.Com_Cfg[ 6 ] = USBFS_EP0_Buf[ 6 ];
-                                      Uart.Com_Cfg[ 7 ] = DEF_UARTx_RX_TIMEOUT;
+                                      COM_Cfg[ 0 ] = USBFS_EP0_Buf[ 0 ];
+                                      COM_Cfg[ 1 ] = USBFS_EP0_Buf[ 1 ];
+                                      COM_Cfg[ 2 ] = USBFS_EP0_Buf[ 2 ];
+                                      COM_Cfg[ 3 ] = USBFS_EP0_Buf[ 3 ];
+                                      COM_Cfg[ 4 ] = USBFS_EP0_Buf[ 4 ];
+                                      COM_Cfg[ 5 ] = USBFS_EP0_Buf[ 5 ];
+                                      COM_Cfg[ 6 ] = USBFS_EP0_Buf[ 6 ];
+                                      COM_Cfg[ 7 ] = 30;//DEF_UARTx_RX_TIMEOUT;
 
                                       baudrate = USBFS_EP0_Buf[ 0 ];
                                       baudrate += ((uint32_t)USBFS_EP0_Buf[ 1 ] << 8 );
                                       baudrate += ((uint32_t)USBFS_EP0_Buf[ 2 ] << 16 );
                                       baudrate += ((uint32_t)USBFS_EP0_Buf[ 3 ] << 24 );
-                                      Uart.Com_Cfg[ 7 ] = Uart.Rx_TimeOutMax;
+//                                     Uart.Com_Cfg[ 7 ] = Uart.Rx_TimeOutMax;
 
-                                      UART2_USB_Init( );
+//                                    UART2_USB_Init( );
+//                                      uint32_t baudrate;
+//                                          uint8_t  stopbits;
+//                                          uint8_t  parity;
+//
+//                                          baudrate = ( uint32_t )( Uart.Com_Cfg[ 3 ] << 24 ) + ( uint32_t )( Uart.Com_Cfg[ 2 ] << 16 );
+//                                          baudrate += ( uint32_t )( Uart.Com_Cfg[ 1 ] << 8 ) + ( uint32_t )( Uart.Com_Cfg[ 0 ] );
+//                                          stopbits = Uart.Com_Cfg[ 4 ];
+//                                          parity = Uart.Com_Cfg[ 5 ];
+
+//                                          UART2_Init( 0, baudrate, stopbits, parity );
+
+                                          /* restart usb receive  */
+                                          USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ 0 ];
+                                          USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
+                                          USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
+
                                  }
                             }
                             else
@@ -412,7 +428,7 @@ void USBFS_IRQHandler( void )
                         switch( USBFS_SetupReqCode )
                         {
                             case CDC_GET_LINE_CODING:
-                                pUSBFS_Descr = (uint8_t *)&Uart.Com_Cfg[ 0 ];
+                                pUSBFS_Descr = (uint8_t *)&COM_Cfg[ 0 ];
                                 len = 7;
                                 break;
 

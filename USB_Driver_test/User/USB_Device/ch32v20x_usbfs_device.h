@@ -61,6 +61,9 @@ extern "C" {
 /* Setup Request Packets */
 #define pUSBFS_SetupReqPak                 ((PUSB_SETUP_REQ)USBFS_EP0_Buf)
 
+
+extern volatile uint8_t  COM_Cfg[];
+
 /*******************************************************************************/
 /* Variable Definition */
 /* Global */
