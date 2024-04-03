@@ -6,14 +6,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../User/USB_Device/ch32v20x_usbfs_device.c \
+../User/USB_Device/usb_cdc_acm.c \
 ../User/USB_Device/usb_desc.c 
 
 OBJS += \
 ./User/USB_Device/ch32v20x_usbfs_device.o \
+./User/USB_Device/usb_cdc_acm.o \
 ./User/USB_Device/usb_desc.o 
 
 C_DEPS += \
 ./User/USB_Device/ch32v20x_usbfs_device.d \
+./User/USB_Device/usb_cdc_acm.d \
 ./User/USB_Device/usb_desc.d 
 
 

@@ -18,6 +18,7 @@
 */
 
 #include "ch32v20x_usbfs_device.h"
+#include "usb_cdc_acm.h"
 #include "debug.h"
 
 void GPIO_Toggle_INIT(void)
@@ -59,11 +60,14 @@ int main(void)
     GPIO_Toggle_INIT();
 
 //    printf( "main\r\n" );
-    char *a = "Hello,world!\n";//message string
-
+//    char *a = "Hello,world!\n ypooo ";//message string
+     int j= 1500;
 	while(1)
 	{
-	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
+//	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
+//	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], 0, DEF_UEP_CPY_LOAD );
+
+	    USBprintf("hello cdc %d\n",j);
 	    GPIO_WriteBit(GPIOC, GPIO_Pin_13, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
 
 	   // USBFS_Endp_DataUp( DEF_UEP3, &USBFS_RX[0],64, DEF_UEP_CPY_LOAD );
