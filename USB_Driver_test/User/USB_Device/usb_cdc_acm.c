@@ -3,7 +3,7 @@
 
 void USBFS_Init()
 {
-    RCC_Configuration();
+//    RCC_Configuration();
     USBFS_RCC_Init( );
     USBFS_Device_Init( ENABLE );
     }

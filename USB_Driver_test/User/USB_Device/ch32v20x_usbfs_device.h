@@ -22,7 +22,7 @@ extern "C" {
 #include "string.h"
 #include "usb_desc.h"
 #include "ch32v20x_usb.h"
-#include "UART.h"
+//#include "UART.h"
 
 /******************************************************************************/
 /* Global Define */
@@ -61,7 +61,7 @@ extern "C" {
 /* Setup Request Packets */
 #define pUSBFS_SetupReqPak                 ((PUSB_SETUP_REQ)USBFS_EP0_Buf)
 
-
+/*COM port specifications  */
 extern volatile uint8_t  COM_Cfg[];
 
 /*******************************************************************************/

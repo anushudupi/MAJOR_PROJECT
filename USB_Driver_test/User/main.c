@@ -62,7 +62,7 @@ int main(void)
 
 //    printf( "main\r\n" );
 //    char *a = "Hello,world!\n ypooo ";//message string
-     int j= 500;
+     int j= 200;
 	while(1)
 	{
 //	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );

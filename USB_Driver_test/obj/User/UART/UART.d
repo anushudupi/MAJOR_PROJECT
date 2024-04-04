@@ -27,8 +27,7 @@ User/UART/UART.o: ../User/UART/UART.c ../User/UART/UART.h \
  C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_misc.h \
  C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/ch32v20x_usbfs_device.h \
  C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/usb_desc.h \
- C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_usb.h \
- C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\UART/UART.h
+ C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_usb.h
 
 ../User/UART/UART.h:
 
@@ -89,5 +88,3 @@ C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/ch
 C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/usb_desc.h:
 
 C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_usb.h:
-
-C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\UART/UART.h:
