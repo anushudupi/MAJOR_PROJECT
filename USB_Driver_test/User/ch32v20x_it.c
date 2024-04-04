@@ -10,7 +10,7 @@
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
 #include "ch32v20x_it.h"
-#include "UART.h"
+//#include "UART.h"
 
 void NMI_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
@@ -37,19 +37,19 @@ void NMI_Handler(void)
  *
  * @return  none
  */
-void TIM2_IRQHandler( void )
-{
-    /* Test IO */
-    static uint8_t tog;
-    tog ? (GPIOA->BSHR = GPIO_Pin_15):(GPIOA->BCR = GPIO_Pin_15);
-    tog ^= 1;
-    /* uart timeout counts */
-    Uart.Rx_TimeOut++;
-    Uart.USB_Up_TimeOut++;
-
-    /* clear status */
-    TIM2->INTFR = (uint16_t)~TIM_IT_Update;
-}
+//void TIM2_IRQHandler( void )
+//{
+//    /* Test IO */
+//    static uint8_t tog;
+//    tog ? (GPIOA->BSHR = GPIO_Pin_15):(GPIOA->BCR = GPIO_Pin_15);
+//    tog ^= 1;
+//    /* uart timeout counts */
+//    Uart.Rx_TimeOut++;
+//    Uart.USB_Up_TimeOut++;
+//
+//    /* clear status */
+//    TIM2->INTFR = (uint16_t)~TIM_IT_Update;
+//}
 
 /*********************************************************************
  * @fn      HardFault_Handler

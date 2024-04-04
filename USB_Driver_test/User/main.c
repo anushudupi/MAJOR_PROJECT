@@ -17,7 +17,7 @@
  *if you need to modify the debugging serial port, please do not use USART2
 */
 
-#include "ch32v20x_usbfs_device.h"
+//#include "ch32v20x_usbfs_device.h"
 #include "usb_cdc_acm.h"
 #include "debug.h"
 
@@ -45,7 +45,7 @@ int main(void)
 	Delay_Init( );
 //	USART_Printf_Init( 115200 );
 //	printf("SystemClk:%d\r\n",SystemCoreClock);
-	RCC_Configuration( );
+//	RCC_Configuration( );
 
 	/* Tim2 init */
 //    TIM2_Init( );
@@ -54,14 +54,15 @@ int main(void)
 //    UART2_Init( 1, DEF_UARTx_BAUDRATE, DEF_UARTx_STOPBIT, DEF_UARTx_PARITY );
 
     /* USB20 device init */
-    USBFS_RCC_Init( );
-    USBFS_Device_Init( ENABLE );
+//    USBFS_RCC_Init( );
+//    USBFS_Device_Init( ENABLE );
+	USBFS_Init ();
     Delay_Ms(1000);
     GPIO_Toggle_INIT();
 
 //    printf( "main\r\n" );
 //    char *a = "Hello,world!\n ypooo ";//message string
-     int j= 1500;
+     int j= 500;
 	while(1)
 	{
 //	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
@@ -72,7 +73,7 @@ int main(void)
 
 	   // USBFS_Endp_DataUp( DEF_UEP3, &USBFS_RX[0],64, DEF_UEP_CPY_LOAD );
 	            // bit banging ASCII bytes at USB Endpoint3 to send data
-	            Delay_Ms(250);
+	            Delay_Ms(1000);
 //        UART2_DataRx_Deal( );
 //        UART2_DataTx_Deal( );
 	}
