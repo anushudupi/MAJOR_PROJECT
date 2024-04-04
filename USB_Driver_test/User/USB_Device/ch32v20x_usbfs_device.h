@@ -22,7 +22,7 @@ extern "C" {
 #include "string.h"
 #include "usb_desc.h"
 #include "ch32v20x_usb.h"
-//#include "UART.h"
+#include "UART.h"
 
 /******************************************************************************/
 /* Global Define */
@@ -90,6 +90,7 @@ extern __attribute__ ((aligned(4))) uint8_t USBFS_EP3_Buf[ ];
 
 /* USB recieve  Buffer */
 extern __attribute__ ((aligned(4))) volatile uint8_t USBFS_RX[ ];
+extern volatile uint16_t RX_PackLen[DEF_USB_RX_PACKS];
 /* USB IN Endpoint Busy Flag */
 extern volatile uint8_t  USBFS_Endp_Busy[ ];
 

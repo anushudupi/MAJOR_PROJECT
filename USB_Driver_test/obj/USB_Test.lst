@@ -9,7 +9,7 @@ Program Header:
     LOAD off    0x00001000 vaddr 0x00000000 paddr 0x00000000 align 2**12
          filesz 0x00002798 memsz 0x00002798 flags r-x
     LOAD off    0x00004000 vaddr 0x20000000 paddr 0x00002798 align 2**12
-         filesz 0x00000070 memsz 0x000009b0 flags rw-
+         filesz 0x00000070 memsz 0x000005b0 flags rw-
     LOAD off    0x00004800 vaddr 0x20004800 paddr 0x20004800 align 2**12
          filesz 0x00000000 memsz 0x00000800 flags rw-
 
@@ -29,25 +29,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS
   6 .data         00000070  20000000  00002798  00004000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .bss          00000940  20000070  00002808  00004070  2**2
+  7 .bss          00000540  20000070  00002808  00004070  2**2
                   ALLOC
   8 .stack        00000800  20004800  20004800  00004800  2**0
                   ALLOC
-  9 .debug_info   0000907a  00000000  00000000  00004070  2**0
+  9 .debug_info   000090ea  00000000  00000000  00004070  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 000019bf  00000000  00000000  0000d0ea  2**0
+ 10 .debug_abbrev 000019bf  00000000  00000000  0000d15a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_aranges 00000390  00000000  00000000  0000eab0  2**3
+ 11 .debug_aranges 00000390  00000000  00000000  0000eb20  2**3
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000002e0  00000000  00000000  0000ee40  2**3
+ 12 .debug_ranges 000002e0  00000000  00000000  0000eeb0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_line   00005160  00000000  00000000  0000f120  2**0
+ 13 .debug_line   00005158  00000000  00000000  0000f190  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00001c21  00000000  00000000  00014280  2**0
+ 14 .debug_str    00001c2c  00000000  00000000  000142e8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .comment      00000033  00000000  00000000  00015ea1  2**0
+ 15 .comment      00000033  00000000  00000000  00015f14  2**0
                   CONTENTS, READONLY
- 16 .debug_frame  00000e90  00000000  00000000  00015ed4  2**2
+ 16 .debug_frame  00000e90  00000000  00000000  00015f48  2**2
                   CONTENTS, READONLY, DEBUGGING
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
@@ -115,7 +115,7 @@ SYMBOL TABLE:
 0000164a  w      .text	00000000 EXTI3_IRQHandler
 00000100 g     F .text	0000006c USBFS_RCC_Init
 0000125e g     F .text	00000098 usb_flush_write
-200009ac g     O .bss	00000004 errno
+200005ac g     O .bss	00000004 errno
 20000070 g       .bss	00000000 _sbss
 00000800 g       *ABS*	00000000 __stack_size
 20000082 g     O .bss	00000002 USBFS_SetupReqLen
@@ -151,7 +151,7 @@ SYMBOL TABLE:
 0000164a  w      .text	00000000 USART3_IRQHandler
 0000164a  w      .text	00000000 RTC_IRQHandler
 20000084 g     O .bss	00000001 USBFS_DevConfig
-200009b0 g       .bss	00000000 _ebss
+200005b0 g       .bss	00000000 _ebss
 0000164a  w      .text	00000000 DMA1_Channel7_IRQHandler
 00001d28 g     F .text	00000010 vsniprintf
 0000164a  w      .text	00000000 CAN1_RX1_IRQHandler
@@ -219,9 +219,8 @@ SYMBOL TABLE:
 200000a4 g     O .bss	00000040 USBFS_EP0_Buf
 20000070 g       .data	00000000 _edata
 20000078 g     O .bss	00000004 pUSBFS_Descr
-200009b0 g       .bss	00000000 _end
+200005b0 g       .bss	00000000 _end
 0000164a  w      .text	00000000 RTCAlarm_IRQHandler
-200005ac g     O .bss	00000400 UART2_Tx_Buf
 00002798 g       .dlalign	00000000 _data_lma
 0000164a  w      .text	00000000 USART2_IRQHandler
 000011ec g     F .text	00000072 USBprintf
@@ -726,7 +725,7 @@ Disassembly of section .text:
      510:	00e78a63          	beq	a5,a4,524 <USBFS_IRQHandler+0x44>
      514:	03000713          	li	a4,48
      518:	52e78b63          	beq	a5,a4,a4e <__stack_size+0x24e>
-     51c:	1e078163          	beqz	a5,6fe <USBFS_IRQHandler+0x21e>
+     51c:	1c078d63          	beqz	a5,6f6 <USBFS_IRQHandler+0x216>
      520:	40f0006f          	j	112e <__stack_size+0x92e>
      524:	fea44783          	lbu	a5,-22(s0)
      528:	03f7f793          	andi	a5,a5,63
@@ -735,7 +734,7 @@ Disassembly of section .text:
      534:	02300713          	li	a4,35
      538:	16e78063          	beq	a5,a4,698 <USBFS_IRQHandler+0x1b8>
      53c:	02000713          	li	a4,32
-     540:	1ae79963          	bne	a5,a4,6f2 <USBFS_IRQHandler+0x212>
+     540:	1ae79563          	bne	a5,a4,6ea <USBFS_IRQHandler+0x20a>
      544:	8221d783          	lhu	a5,-2014(gp) # 20000082 <USBFS_SetupReqLen>
      548:	07c2                	slli	a5,a5,0x10
      54a:	83c1                	srli	a5,a5,0x10
@@ -746,7 +745,7 @@ Disassembly of section .text:
      558:	81d1c783          	lbu	a5,-2019(gp) # 2000007d <USBFS_SetupReqType>
      55c:	0ff7f793          	andi	a5,a5,255
      560:	0607f793          	andi	a5,a5,96
-     564:	18079a63          	bnez	a5,6f8 <USBFS_IRQHandler+0x218>
+     564:	18079663          	bnez	a5,6f0 <USBFS_IRQHandler+0x210>
      568:	81c1c783          	lbu	a5,-2020(gp) # 2000007c <USBFS_SetupReqCode>
      56c:	0ff7f793          	andi	a5,a5,255
      570:	4715                	li	a4,5
@@ -814,7 +813,7 @@ Disassembly of section .text:
      63e:	b3b8                	sb	a4,3(a5)
      640:	a011                	j	644 <USBFS_IRQHandler+0x164>
      642:	0001                	nop
-     644:	a855                	j	6f8 <USBFS_IRQHandler+0x218>
+     644:	a075                	j	6f0 <USBFS_IRQHandler+0x210>
      646:	500007b7          	lui	a5,0x50000
      64a:	0367c783          	lbu	a5,54(a5) # 50000036 <_eusrstack+0x2fffb036>
      64e:	0ff7f713          	andi	a4,a5,255
@@ -838,7 +837,7 @@ Disassembly of section .text:
      68a:	02e78b23          	sb	a4,54(a5) # 50000036 <_eusrstack+0x2fffb036>
      68e:	82818793          	addi	a5,gp,-2008 # 20000088 <USBFS_Endp_Busy>
      692:	000780a3          	sb	zero,1(a5)
-     696:	a095                	j	6fa <USBFS_IRQHandler+0x21a>
+     696:	a8b1                	j	6f2 <USBFS_IRQHandler+0x212>
      698:	500007b7          	lui	a5,0x50000
      69c:	03e7c783          	lbu	a5,62(a5) # 5000003e <_eusrstack+0x2fffb03e>
      6a0:	0ff7f713          	andi	a4,a5,255
@@ -862,227 +861,227 @@ Disassembly of section .text:
      6dc:	02e78f23          	sb	a4,62(a5) # 5000003e <_eusrstack+0x2fffb03e>
      6e0:	82818793          	addi	a5,gp,-2008 # 20000088 <USBFS_Endp_Busy>
      6e4:	000781a3          	sb	zero,3(a5)
-     6e8:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     6ec:	02078a23          	sb	zero,52(a5)
-     6f0:	a029                	j	6fa <USBFS_IRQHandler+0x21a>
-     6f2:	0001                	nop
-     6f4:	23b0006f          	j	112e <__stack_size+0x92e>
-     6f8:	0001                	nop
-     6fa:	2350006f          	j	112e <__stack_size+0x92e>
-     6fe:	fea44783          	lbu	a5,-22(s0)
-     702:	03f7f793          	andi	a5,a5,63
-     706:	c789                	beqz	a5,710 <USBFS_IRQHandler+0x230>
-     708:	4709                	li	a4,2
-     70a:	14e78f63          	beq	a5,a4,868 <__stack_size+0x68>
-     70e:	ae35                	j	a4a <__stack_size+0x24a>
-     710:	500007b7          	lui	a5,0x50000
-     714:	479c                	lw	a5,8(a5)
-     716:	fef41623          	sh	a5,-20(s0)
-     71a:	fea44783          	lbu	a5,-22(s0)
-     71e:	0407f793          	andi	a5,a5,64
-     722:	32078063          	beqz	a5,a42 <__stack_size+0x242>
-     726:	81d1c783          	lbu	a5,-2019(gp) # 2000007d <USBFS_SetupReqType>
-     72a:	0ff7f793          	andi	a5,a5,255
-     72e:	0607f793          	andi	a5,a5,96
-     732:	10078b63          	beqz	a5,848 <__stack_size+0x48>
-     736:	82019123          	sh	zero,-2014(gp) # 20000082 <USBFS_SetupReqLen>
-     73a:	81c1c783          	lbu	a5,-2020(gp) # 2000007c <USBFS_SetupReqCode>
-     73e:	0ff7f713          	andi	a4,a5,255
-     742:	02000793          	li	a5,32
-     746:	10f71163          	bne	a4,a5,848 <__stack_size+0x48>
-     74a:	200007b7          	lui	a5,0x20000
-     74e:	0a47c703          	lbu	a4,164(a5) # 200000a4 <USBFS_EP0_Buf>
-     752:	80e18823          	sb	a4,-2032(gp) # 20000070 <_edata>
-     756:	200007b7          	lui	a5,0x20000
-     75a:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     75e:	3398                	lbu	a4,1(a5)
-     760:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     764:	b398                	sb	a4,1(a5)
-     766:	200007b7          	lui	a5,0x20000
-     76a:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     76e:	23b8                	lbu	a4,2(a5)
-     770:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     774:	a3b8                	sb	a4,2(a5)
-     776:	200007b7          	lui	a5,0x20000
-     77a:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     77e:	33b8                	lbu	a4,3(a5)
-     780:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     784:	b3b8                	sb	a4,3(a5)
-     786:	200007b7          	lui	a5,0x20000
-     78a:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     78e:	23d8                	lbu	a4,4(a5)
-     790:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     794:	a3d8                	sb	a4,4(a5)
-     796:	200007b7          	lui	a5,0x20000
-     79a:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     79e:	33d8                	lbu	a4,5(a5)
-     7a0:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     7a4:	b3d8                	sb	a4,5(a5)
-     7a6:	200007b7          	lui	a5,0x20000
-     7aa:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     7ae:	23f8                	lbu	a4,6(a5)
-     7b0:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     7b4:	a3f8                	sb	a4,6(a5)
-     7b6:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
-     7ba:	4779                	li	a4,30
-     7bc:	b3f8                	sb	a4,7(a5)
-     7be:	200007b7          	lui	a5,0x20000
-     7c2:	0a47c783          	lbu	a5,164(a5) # 200000a4 <USBFS_EP0_Buf>
-     7c6:	fef42223          	sw	a5,-28(s0)
-     7ca:	200007b7          	lui	a5,0x20000
-     7ce:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     7d2:	339c                	lbu	a5,1(a5)
-     7d4:	07a2                	slli	a5,a5,0x8
-     7d6:	fe442703          	lw	a4,-28(s0)
-     7da:	97ba                	add	a5,a5,a4
-     7dc:	fef42223          	sw	a5,-28(s0)
-     7e0:	200007b7          	lui	a5,0x20000
-     7e4:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     7e8:	23bc                	lbu	a5,2(a5)
-     7ea:	07c2                	slli	a5,a5,0x10
-     7ec:	fe442703          	lw	a4,-28(s0)
-     7f0:	97ba                	add	a5,a5,a4
-     7f2:	fef42223          	sw	a5,-28(s0)
-     7f6:	200007b7          	lui	a5,0x20000
-     7fa:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
-     7fe:	33bc                	lbu	a5,3(a5)
-     800:	07e2                	slli	a5,a5,0x18
-     802:	fe442703          	lw	a4,-28(s0)
-     806:	97ba                	add	a5,a5,a4
-     808:	fef42223          	sw	a5,-28(s0)
-     80c:	500007b7          	lui	a5,0x50000
-     810:	20000737          	lui	a4,0x20000
-     814:	16470713          	addi	a4,a4,356 # 20000164 <USBFS_RX>
-     818:	cf98                	sw	a4,24(a5)
-     81a:	500007b7          	lui	a5,0x50000
-     81e:	03b7c783          	lbu	a5,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
-     822:	0ff7f713          	andi	a4,a5,255
-     826:	500007b7          	lui	a5,0x50000
-     82a:	9b71                	andi	a4,a4,-4
-     82c:	0ff77713          	andi	a4,a4,255
-     830:	02e78da3          	sb	a4,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
-     834:	50000737          	lui	a4,0x50000
-     838:	500007b7          	lui	a5,0x50000
-     83c:	03b74703          	lbu	a4,59(a4) # 5000003b <_eusrstack+0x2fffb03b>
-     840:	0ff77713          	andi	a4,a4,255
-     844:	02e78da3          	sb	a4,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
-     848:	8221d783          	lhu	a5,-2014(gp) # 20000082 <USBFS_SetupReqLen>
-     84c:	07c2                	slli	a5,a5,0x10
-     84e:	83c1                	srli	a5,a5,0x10
-     850:	1e079963          	bnez	a5,a42 <__stack_size+0x242>
+     6e8:	a029                	j	6f2 <USBFS_IRQHandler+0x212>
+     6ea:	0001                	nop
+     6ec:	2430006f          	j	112e <__stack_size+0x92e>
+     6f0:	0001                	nop
+     6f2:	23d0006f          	j	112e <__stack_size+0x92e>
+     6f6:	fea44783          	lbu	a5,-22(s0)
+     6fa:	03f7f793          	andi	a5,a5,63
+     6fe:	c789                	beqz	a5,708 <USBFS_IRQHandler+0x228>
+     700:	4709                	li	a4,2
+     702:	14e78f63          	beq	a5,a4,860 <__stack_size+0x60>
+     706:	a691                	j	a4a <__stack_size+0x24a>
+     708:	500007b7          	lui	a5,0x50000
+     70c:	479c                	lw	a5,8(a5)
+     70e:	fef41623          	sh	a5,-20(s0)
+     712:	fea44783          	lbu	a5,-22(s0)
+     716:	0407f793          	andi	a5,a5,64
+     71a:	32078463          	beqz	a5,a42 <__stack_size+0x242>
+     71e:	81d1c783          	lbu	a5,-2019(gp) # 2000007d <USBFS_SetupReqType>
+     722:	0ff7f793          	andi	a5,a5,255
+     726:	0607f793          	andi	a5,a5,96
+     72a:	10078b63          	beqz	a5,840 <__stack_size+0x40>
+     72e:	82019123          	sh	zero,-2014(gp) # 20000082 <USBFS_SetupReqLen>
+     732:	81c1c783          	lbu	a5,-2020(gp) # 2000007c <USBFS_SetupReqCode>
+     736:	0ff7f713          	andi	a4,a5,255
+     73a:	02000793          	li	a5,32
+     73e:	10f71163          	bne	a4,a5,840 <__stack_size+0x40>
+     742:	200007b7          	lui	a5,0x20000
+     746:	0a47c703          	lbu	a4,164(a5) # 200000a4 <USBFS_EP0_Buf>
+     74a:	80e18823          	sb	a4,-2032(gp) # 20000070 <_edata>
+     74e:	200007b7          	lui	a5,0x20000
+     752:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     756:	3398                	lbu	a4,1(a5)
+     758:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     75c:	b398                	sb	a4,1(a5)
+     75e:	200007b7          	lui	a5,0x20000
+     762:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     766:	23b8                	lbu	a4,2(a5)
+     768:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     76c:	a3b8                	sb	a4,2(a5)
+     76e:	200007b7          	lui	a5,0x20000
+     772:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     776:	33b8                	lbu	a4,3(a5)
+     778:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     77c:	b3b8                	sb	a4,3(a5)
+     77e:	200007b7          	lui	a5,0x20000
+     782:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     786:	23d8                	lbu	a4,4(a5)
+     788:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     78c:	a3d8                	sb	a4,4(a5)
+     78e:	200007b7          	lui	a5,0x20000
+     792:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     796:	33d8                	lbu	a4,5(a5)
+     798:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     79c:	b3d8                	sb	a4,5(a5)
+     79e:	200007b7          	lui	a5,0x20000
+     7a2:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     7a6:	23f8                	lbu	a4,6(a5)
+     7a8:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     7ac:	a3f8                	sb	a4,6(a5)
+     7ae:	81018793          	addi	a5,gp,-2032 # 20000070 <_edata>
+     7b2:	4779                	li	a4,30
+     7b4:	b3f8                	sb	a4,7(a5)
+     7b6:	200007b7          	lui	a5,0x20000
+     7ba:	0a47c783          	lbu	a5,164(a5) # 200000a4 <USBFS_EP0_Buf>
+     7be:	fef42223          	sw	a5,-28(s0)
+     7c2:	200007b7          	lui	a5,0x20000
+     7c6:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     7ca:	339c                	lbu	a5,1(a5)
+     7cc:	07a2                	slli	a5,a5,0x8
+     7ce:	fe442703          	lw	a4,-28(s0)
+     7d2:	97ba                	add	a5,a5,a4
+     7d4:	fef42223          	sw	a5,-28(s0)
+     7d8:	200007b7          	lui	a5,0x20000
+     7dc:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     7e0:	23bc                	lbu	a5,2(a5)
+     7e2:	07c2                	slli	a5,a5,0x10
+     7e4:	fe442703          	lw	a4,-28(s0)
+     7e8:	97ba                	add	a5,a5,a4
+     7ea:	fef42223          	sw	a5,-28(s0)
+     7ee:	200007b7          	lui	a5,0x20000
+     7f2:	0a478793          	addi	a5,a5,164 # 200000a4 <USBFS_EP0_Buf>
+     7f6:	33bc                	lbu	a5,3(a5)
+     7f8:	07e2                	slli	a5,a5,0x18
+     7fa:	fe442703          	lw	a4,-28(s0)
+     7fe:	97ba                	add	a5,a5,a4
+     800:	fef42223          	sw	a5,-28(s0)
+     804:	500007b7          	lui	a5,0x50000
+     808:	20000737          	lui	a4,0x20000
+     80c:	16470713          	addi	a4,a4,356 # 20000164 <USBFS_RX>
+     810:	cf98                	sw	a4,24(a5)
+     812:	500007b7          	lui	a5,0x50000
+     816:	03b7c783          	lbu	a5,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
+     81a:	0ff7f713          	andi	a4,a5,255
+     81e:	500007b7          	lui	a5,0x50000
+     822:	9b71                	andi	a4,a4,-4
+     824:	0ff77713          	andi	a4,a4,255
+     828:	02e78da3          	sb	a4,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
+     82c:	50000737          	lui	a4,0x50000
+     830:	500007b7          	lui	a5,0x50000
+     834:	03b74703          	lbu	a4,59(a4) # 5000003b <_eusrstack+0x2fffb03b>
+     838:	0ff77713          	andi	a4,a4,255
+     83c:	02e78da3          	sb	a4,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
+     840:	8221d783          	lhu	a5,-2014(gp) # 20000082 <USBFS_SetupReqLen>
+     844:	07c2                	slli	a5,a5,0x10
+     846:	83c1                	srli	a5,a5,0x10
+     848:	1e079d63          	bnez	a5,a42 <__stack_size+0x242>
+     84c:	500007b7          	lui	a5,0x50000
+     850:	02079823          	sh	zero,48(a5) # 50000030 <_eusrstack+0x2fffb030>
      854:	500007b7          	lui	a5,0x50000
-     858:	02079823          	sh	zero,48(a5) # 50000030 <_eusrstack+0x2fffb030>
-     85c:	500007b7          	lui	a5,0x50000
-     860:	4711                	li	a4,4
-     862:	02e78923          	sb	a4,50(a5) # 50000032 <_eusrstack+0x2fffb032>
-     866:	aaf1                	j	a42 <__stack_size+0x242>
-     868:	500007b7          	lui	a5,0x50000
-     86c:	03b7c783          	lbu	a5,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
-     870:	0ff7f713          	andi	a4,a5,255
-     874:	500007b7          	lui	a5,0x50000
-     878:	00474713          	xori	a4,a4,4
-     87c:	0ff77713          	andi	a4,a4,255
-     880:	02e78da3          	sb	a4,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
-     884:	500007b7          	lui	a5,0x50000
-     888:	4790                	lw	a2,8(a5)
-     88a:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
-     88e:	2718                	lbu	a4,8(a4)
-     890:	0ff77713          	andi	a4,a4,255
-     894:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     898:	379c                	lbu	a5,9(a5)
-     89a:	0ff7f793          	andi	a5,a5,255
-     89e:	07a2                	slli	a5,a5,0x8
-     8a0:	8fd9                	or	a5,a5,a4
-     8a2:	07c2                	slli	a5,a5,0x10
-     8a4:	83c1                	srli	a5,a5,0x10
-     8a6:	86be                	mv	a3,a5
-     8a8:	01061713          	slli	a4,a2,0x10
-     8ac:	8341                	srli	a4,a4,0x10
-     8ae:	0686                	slli	a3,a3,0x1
-     8b0:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     8b4:	97b6                	add	a5,a5,a3
-     8b6:	0ff77593          	andi	a1,a4,255
-     8ba:	27f4                	lbu	a3,14(a5)
-     8bc:	8a81                	andi	a3,a3,0
-     8be:	8636                	mv	a2,a3
-     8c0:	86ae                	mv	a3,a1
-     8c2:	8ed1                	or	a3,a3,a2
-     8c4:	a7f4                	sb	a3,14(a5)
-     8c6:	8321                	srli	a4,a4,0x8
-     8c8:	01071613          	slli	a2,a4,0x10
-     8cc:	8241                	srli	a2,a2,0x10
-     8ce:	37f8                	lbu	a4,15(a5)
-     8d0:	8b01                	andi	a4,a4,0
-     8d2:	86ba                	mv	a3,a4
-     8d4:	8732                	mv	a4,a2
-     8d6:	8f55                	or	a4,a4,a3
-     8d8:	b7f8                	sb	a4,15(a5)
-     8da:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
-     8de:	2718                	lbu	a4,8(a4)
-     8e0:	0ff77713          	andi	a4,a4,255
-     8e4:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     8e8:	379c                	lbu	a5,9(a5)
-     8ea:	0ff7f793          	andi	a5,a5,255
-     8ee:	07a2                	slli	a5,a5,0x8
-     8f0:	8fd9                	or	a5,a5,a4
-     8f2:	07c2                	slli	a5,a5,0x10
-     8f4:	83c1                	srli	a5,a5,0x10
-     8f6:	0785                	addi	a5,a5,1
-     8f8:	01079713          	slli	a4,a5,0x10
-     8fc:	8341                	srli	a4,a4,0x10
-     8fe:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     902:	0ff77593          	andi	a1,a4,255
-     906:	2794                	lbu	a3,8(a5)
-     908:	8a81                	andi	a3,a3,0
-     90a:	8636                	mv	a2,a3
-     90c:	86ae                	mv	a3,a1
-     90e:	8ed1                	or	a3,a3,a2
-     910:	a794                	sb	a3,8(a5)
-     912:	8321                	srli	a4,a4,0x8
-     914:	01071613          	slli	a2,a4,0x10
-     918:	8241                	srli	a2,a2,0x10
-     91a:	3798                	lbu	a4,9(a5)
-     91c:	8b01                	andi	a4,a4,0
-     91e:	86ba                	mv	a3,a4
-     920:	8732                	mv	a4,a2
-     922:	8f55                	or	a4,a4,a3
-     924:	b798                	sb	a4,9(a5)
-     926:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
-     92a:	2718                	lbu	a4,8(a4)
-     92c:	0ff77713          	andi	a4,a4,255
-     930:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     934:	379c                	lbu	a5,9(a5)
-     936:	0ff7f793          	andi	a5,a5,255
-     93a:	07a2                	slli	a5,a5,0x8
-     93c:	8fd9                	or	a5,a5,a4
-     93e:	07c2                	slli	a5,a5,0x10
-     940:	83c1                	srli	a5,a5,0x10
-     942:	00679713          	slli	a4,a5,0x6
-     946:	d4c18793          	addi	a5,gp,-692 # 200005ac <UART2_Tx_Buf>
-     94a:	973e                	add	a4,a4,a5
-     94c:	500007b7          	lui	a5,0x50000
-     950:	cf98                	sw	a4,24(a5)
-     952:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
-     956:	2718                	lbu	a4,8(a4)
-     958:	0ff77713          	andi	a4,a4,255
-     95c:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     960:	379c                	lbu	a5,9(a5)
-     962:	0ff7f793          	andi	a5,a5,255
-     966:	07a2                	slli	a5,a5,0x8
-     968:	8fd9                	or	a5,a5,a4
-     96a:	01079713          	slli	a4,a5,0x10
-     96e:	8341                	srli	a4,a4,0x10
-     970:	47bd                	li	a5,15
-     972:	00e7ff63          	bgeu	a5,a4,990 <__stack_size+0x190>
-     976:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
-     97a:	2798                	lbu	a4,8(a5)
-     97c:	8b01                	andi	a4,a4,0
-     97e:	a798                	sb	a4,8(a5)
-     980:	3798                	lbu	a4,9(a5)
-     982:	8b01                	andi	a4,a4,0
-     984:	b798                	sb	a4,9(a5)
-     986:	500007b7          	lui	a5,0x50000
-     98a:	d4c18713          	addi	a4,gp,-692 # 200005ac <UART2_Tx_Buf>
+     858:	4711                	li	a4,4
+     85a:	02e78923          	sb	a4,50(a5) # 50000032 <_eusrstack+0x2fffb032>
+     85e:	a2d5                	j	a42 <__stack_size+0x242>
+     860:	500007b7          	lui	a5,0x50000
+     864:	03b7c783          	lbu	a5,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
+     868:	0ff7f713          	andi	a4,a5,255
+     86c:	500007b7          	lui	a5,0x50000
+     870:	00474713          	xori	a4,a4,4
+     874:	0ff77713          	andi	a4,a4,255
+     878:	02e78da3          	sb	a4,59(a5) # 5000003b <_eusrstack+0x2fffb03b>
+     87c:	500007b7          	lui	a5,0x50000
+     880:	4790                	lw	a2,8(a5)
+     882:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
+     886:	2718                	lbu	a4,8(a4)
+     888:	0ff77713          	andi	a4,a4,255
+     88c:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     890:	379c                	lbu	a5,9(a5)
+     892:	0ff7f793          	andi	a5,a5,255
+     896:	07a2                	slli	a5,a5,0x8
+     898:	8fd9                	or	a5,a5,a4
+     89a:	07c2                	slli	a5,a5,0x10
+     89c:	83c1                	srli	a5,a5,0x10
+     89e:	86be                	mv	a3,a5
+     8a0:	01061713          	slli	a4,a2,0x10
+     8a4:	8341                	srli	a4,a4,0x10
+     8a6:	0686                	slli	a3,a3,0x1
+     8a8:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     8ac:	97b6                	add	a5,a5,a3
+     8ae:	0ff77593          	andi	a1,a4,255
+     8b2:	27f4                	lbu	a3,14(a5)
+     8b4:	8a81                	andi	a3,a3,0
+     8b6:	8636                	mv	a2,a3
+     8b8:	86ae                	mv	a3,a1
+     8ba:	8ed1                	or	a3,a3,a2
+     8bc:	a7f4                	sb	a3,14(a5)
+     8be:	8321                	srli	a4,a4,0x8
+     8c0:	01071613          	slli	a2,a4,0x10
+     8c4:	8241                	srli	a2,a2,0x10
+     8c6:	37f8                	lbu	a4,15(a5)
+     8c8:	8b01                	andi	a4,a4,0
+     8ca:	86ba                	mv	a3,a4
+     8cc:	8732                	mv	a4,a2
+     8ce:	8f55                	or	a4,a4,a3
+     8d0:	b7f8                	sb	a4,15(a5)
+     8d2:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
+     8d6:	2718                	lbu	a4,8(a4)
+     8d8:	0ff77713          	andi	a4,a4,255
+     8dc:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     8e0:	379c                	lbu	a5,9(a5)
+     8e2:	0ff7f793          	andi	a5,a5,255
+     8e6:	07a2                	slli	a5,a5,0x8
+     8e8:	8fd9                	or	a5,a5,a4
+     8ea:	07c2                	slli	a5,a5,0x10
+     8ec:	83c1                	srli	a5,a5,0x10
+     8ee:	0785                	addi	a5,a5,1
+     8f0:	01079713          	slli	a4,a5,0x10
+     8f4:	8341                	srli	a4,a4,0x10
+     8f6:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     8fa:	0ff77593          	andi	a1,a4,255
+     8fe:	2794                	lbu	a3,8(a5)
+     900:	8a81                	andi	a3,a3,0
+     902:	8636                	mv	a2,a3
+     904:	86ae                	mv	a3,a1
+     906:	8ed1                	or	a3,a3,a2
+     908:	a794                	sb	a3,8(a5)
+     90a:	8321                	srli	a4,a4,0x8
+     90c:	01071613          	slli	a2,a4,0x10
+     910:	8241                	srli	a2,a2,0x10
+     912:	3798                	lbu	a4,9(a5)
+     914:	8b01                	andi	a4,a4,0
+     916:	86ba                	mv	a3,a4
+     918:	8732                	mv	a4,a2
+     91a:	8f55                	or	a4,a4,a3
+     91c:	b798                	sb	a4,9(a5)
+     91e:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
+     922:	2718                	lbu	a4,8(a4)
+     924:	0ff77713          	andi	a4,a4,255
+     928:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     92c:	379c                	lbu	a5,9(a5)
+     92e:	0ff7f793          	andi	a5,a5,255
+     932:	07a2                	slli	a5,a5,0x8
+     934:	8fd9                	or	a5,a5,a4
+     936:	07c2                	slli	a5,a5,0x10
+     938:	83c1                	srli	a5,a5,0x10
+     93a:	00679713          	slli	a4,a5,0x6
+     93e:	200007b7          	lui	a5,0x20000
+     942:	16478793          	addi	a5,a5,356 # 20000164 <USBFS_RX>
+     946:	973e                	add	a4,a4,a5
+     948:	500007b7          	lui	a5,0x50000
+     94c:	cf98                	sw	a4,24(a5)
+     94e:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
+     952:	2718                	lbu	a4,8(a4)
+     954:	0ff77713          	andi	a4,a4,255
+     958:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     95c:	379c                	lbu	a5,9(a5)
+     95e:	0ff7f793          	andi	a5,a5,255
+     962:	07a2                	slli	a5,a5,0x8
+     964:	8fd9                	or	a5,a5,a4
+     966:	01079713          	slli	a4,a5,0x10
+     96a:	8341                	srli	a4,a4,0x10
+     96c:	47bd                	li	a5,15
+     96e:	02e7f163          	bgeu	a5,a4,990 <__stack_size+0x190>
+     972:	d0418793          	addi	a5,gp,-764 # 20000564 <Uart>
+     976:	2798                	lbu	a4,8(a5)
+     978:	8b01                	andi	a4,a4,0
+     97a:	a798                	sb	a4,8(a5)
+     97c:	3798                	lbu	a4,9(a5)
+     97e:	8b01                	andi	a4,a4,0
+     980:	b798                	sb	a4,9(a5)
+     982:	500007b7          	lui	a5,0x50000
+     986:	20000737          	lui	a4,0x20000
+     98a:	16470713          	addi	a4,a4,356 # 20000164 <USBFS_RX>
      98e:	cf98                	sw	a4,24(a5)
      990:	d0418713          	addi	a4,gp,-764 # 20000564 <Uart>
      994:	2758                	lbu	a4,12(a4)
@@ -2199,7 +2198,7 @@ Disassembly of section .text:
     167e:	0591                	addi	a1,a1,4
     1680:	fec5eae3          	bltu	a1,a2,1674 <handle_reset+0x28>
     1684:	81018513          	addi	a0,gp,-2032 # 20000070 <_edata>
-    1688:	15018593          	addi	a1,gp,336 # 200009b0 <_ebss>
+    1688:	d5018593          	addi	a1,gp,-688 # 200005b0 <_ebss>
     168c:	00b57763          	bgeu	a0,a1,169a <handle_reset+0x4e>
     1690:	00052023          	sw	zero,0(a0)
     1694:	0511                	addi	a0,a0,4
@@ -2643,7 +2642,7 @@ Disassembly of section .text:
     1baa:	0647a703          	lw	a4,100(a5) # 20000064 <curbrk.4673>
     1bae:	fec42783          	lw	a5,-20(s0)
     1bb2:	973e                	add	a4,a4,a5
-    1bb4:	15018793          	addi	a5,gp,336 # 200009b0 <_ebss>
+    1bb4:	d5018793          	addi	a5,gp,-688 # 200005b0 <_ebss>
     1bb8:	00f76f63          	bltu	a4,a5,1bd6 <_sbrk+0x3a>
     1bbc:	200007b7          	lui	a5,0x20000
     1bc0:	0647a703          	lw	a4,100(a5) # 20000064 <curbrk.4673>
@@ -3698,12 +3697,12 @@ Disassembly of section .text:
     2642:	c422                	sw	s0,8(sp)
     2644:	842a                	mv	s0,a0
     2646:	852e                	mv	a0,a1
-    2648:	1401a623          	sw	zero,332(gp) # 200009ac <errno>
+    2648:	d401a623          	sw	zero,-692(gp) # 200005ac <errno>
     264c:	c606                	sw	ra,12(sp)
     264e:	d4eff0ef          	jal	ra,1b9c <_sbrk>
     2652:	57fd                	li	a5,-1
     2654:	00f51763          	bne	a0,a5,2662 <_sbrk_r+0x22>
-    2658:	14c18793          	addi	a5,gp,332 # 200009ac <errno>
+    2658:	d4c18793          	addi	a5,gp,-692 # 200005ac <errno>
     265c:	439c                	lw	a5,0(a5)
     265e:	c391                	beqz	a5,2662 <_sbrk_r+0x22>
     2660:	c01c                	sw	a5,0(s0)

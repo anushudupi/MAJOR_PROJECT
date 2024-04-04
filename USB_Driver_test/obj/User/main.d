@@ -28,7 +28,9 @@ User/main.o: ../User/main.c \
  C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User/ch32v20x_it.h \
  C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_misc.h \
  C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/usb_desc.h \
- C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_usb.h
+ C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_usb.h \
+ C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\UART/UART.h \
+ C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/ch32v20x_usbfs_device.h
 
 C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/usb_cdc_acm.h:
 
@@ -89,3 +91,7 @@ C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_misc.h
 C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/usb_desc.h:
 
 C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\SRC\Peripheral\inc/ch32v20x_usb.h:
+
+C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\UART/UART.h:
+
+C:\Users\anush\OneDrive\Desktop\MAJOR_PROJECT\USB_Driver_test\User\USB_Device/ch32v20x_usbfs_device.h:

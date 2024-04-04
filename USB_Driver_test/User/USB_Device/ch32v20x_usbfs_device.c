@@ -305,7 +305,7 @@ void USBFS_IRQHandler( void )
                         USBFSD->UEP3_TX_CTRL ^= USBFS_UEP_T_TOG;
                         USBFSD->UEP3_TX_CTRL = (USBFSD->UEP3_TX_CTRL & ~USBFS_UEP_T_RES_MASK) | USBFS_UEP_T_RES_NAK;
                         USBFS_Endp_Busy[ DEF_UEP3 ] = 0;
-                        Uart.USB_Up_IngFlag = 0x00;
+//                        Uart.USB_Up_IngFlag = 0x00;
                         break;
 
                     default :
@@ -387,11 +387,11 @@ void USBFS_IRQHandler( void )
                         USBFSD->UEP2_RX_CTRL ^= USBFS_UEP_R_TOG;
                         Uart.Tx_PackLen[ Uart.Tx_LoadNum ] = USBFSD->RX_LEN;
                         Uart.Tx_LoadNum++;
-                        USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&UART2_Tx_Buf[ ( Uart.Tx_LoadNum * DEF_USB_FS_PACK_LEN ) ];
+                        USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ ( Uart.Tx_LoadNum * DEF_USB_FS_PACK_LEN ) ];
                         if( Uart.Tx_LoadNum >= DEF_UARTx_TX_BUF_NUM_MAX )
                         {
                             Uart.Tx_LoadNum = 0x00;
-                            USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&UART2_Tx_Buf[ 0 ];
+                            USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ 0 ];
                         }
                         Uart.Tx_RemainNum++;
                         if( Uart.Tx_RemainNum >= ( DEF_UARTx_TX_BUF_NUM_MAX - 2 ) )
@@ -400,6 +400,7 @@ void USBFS_IRQHandler( void )
                             USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_NAK;
                             Uart.USB_Down_StopFlag = 0x01;
                         }
+
                         break;
 
                     default:

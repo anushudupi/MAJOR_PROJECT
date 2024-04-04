@@ -54,6 +54,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/UART/UART.o
  .data          0x0000000000000000        0x0 ./User/UART/UART.o
  .bss           0x0000000000000000        0x0 ./User/UART/UART.o
+ .bss.UART2_Tx_Buf
+                0x0000000000000000      0x400 ./User/UART/UART.o
  .bss.UART2_Rx_Buf
                 0x0000000000000000      0x800 ./User/UART/UART.o
  .text          0x0000000000000000        0x0 ./User/ch32v20x_it.o
@@ -1608,7 +1610,7 @@ END GROUP
                 0x0000000020000070                . = ALIGN (0x4)
                 0x0000000020000070                PROVIDE (_edata = .)
 
-.bss            0x0000000020000070      0x940 load address 0x0000000000002808
+.bss            0x0000000020000070      0x540 load address 0x0000000000002808
                 0x0000000020000070                . = ALIGN (0x4)
                 0x0000000020000070                PROVIDE (_sbss = .)
  *(.sbss*)
@@ -1679,17 +1681,14 @@ END GROUP
                 0x0000000020000164                USBFS_RX
  .bss.Uart      0x0000000020000564       0x46 ./User/UART/UART.o
                 0x0000000020000564                Uart
- *fill*         0x00000000200005aa        0x2 
- .bss.UART2_Tx_Buf
-                0x00000000200005ac      0x400 ./User/UART/UART.o
-                0x00000000200005ac                UART2_Tx_Buf
  *(.gnu.linkonce.b.*)
  *(COMMON*)
- COMMON         0x00000000200009ac        0x4 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-reent.o)
-                0x00000000200009ac                errno
-                0x00000000200009b0                . = ALIGN (0x4)
-                0x00000000200009b0                PROVIDE (_ebss = .)
-                0x00000000200009b0                PROVIDE (_end = _ebss)
+ *fill*         0x00000000200005aa        0x2 
+ COMMON         0x00000000200005ac        0x4 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32imacxw/ilp32\libg_nano.a(lib_a-reent.o)
+                0x00000000200005ac                errno
+                0x00000000200005b0                . = ALIGN (0x4)
+                0x00000000200005b0                PROVIDE (_ebss = .)
+                0x00000000200005b0                PROVIDE (_end = _ebss)
                 [!provide]                        PROVIDE (end = .)
 
 .stack          0x0000000020004800      0x800
@@ -1701,18 +1700,18 @@ END GROUP
                 0x0000000020005000                PROVIDE (_eusrstack = .)
 OUTPUT(USB_Test.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000     0x907a
- .debug_info    0x0000000000000000     0x182b ./User/USB_Device/ch32v20x_usbfs_device.o
- .debug_info    0x000000000000182b      0xd7a ./User/USB_Device/usb_cdc_acm.o
- .debug_info    0x00000000000025a5      0x9ff ./User/USB_Device/usb_desc.o
- .debug_info    0x0000000000002fa4      0xd03 ./User/UART/UART.o
- .debug_info    0x0000000000003ca7      0x962 ./User/ch32v20x_it.o
- .debug_info    0x0000000000004609      0xe55 ./User/main.o
- .debug_info    0x000000000000545e      0xb67 ./User/system_ch32v20x.o
- .debug_info    0x0000000000005fc5       0x22 ./Startup/startup_ch32v20x_D6.o
- .debug_info    0x0000000000005fe7     0x103b ./Peripheral/src/ch32v20x_gpio.o
- .debug_info    0x0000000000007022     0x1228 ./Peripheral/src/ch32v20x_rcc.o
- .debug_info    0x000000000000824a      0xe30 ./Debug/debug.o
+.debug_info     0x0000000000000000     0x90ea
+ .debug_info    0x0000000000000000     0x1847 ./User/USB_Device/ch32v20x_usbfs_device.o
+ .debug_info    0x0000000000001847      0xd96 ./User/USB_Device/usb_cdc_acm.o
+ .debug_info    0x00000000000025dd      0x9ff ./User/USB_Device/usb_desc.o
+ .debug_info    0x0000000000002fdc      0xd1f ./User/UART/UART.o
+ .debug_info    0x0000000000003cfb      0x962 ./User/ch32v20x_it.o
+ .debug_info    0x000000000000465d      0xe71 ./User/main.o
+ .debug_info    0x00000000000054ce      0xb67 ./User/system_ch32v20x.o
+ .debug_info    0x0000000000006035       0x22 ./Startup/startup_ch32v20x_D6.o
+ .debug_info    0x0000000000006057     0x103b ./Peripheral/src/ch32v20x_gpio.o
+ .debug_info    0x0000000000007092     0x1228 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_info    0x00000000000082ba      0xe30 ./Debug/debug.o
 
 .debug_abbrev   0x0000000000000000     0x19bf
  .debug_abbrev  0x0000000000000000      0x366 ./User/USB_Device/ch32v20x_usbfs_device.o
@@ -1763,41 +1762,41 @@ OUTPUT(USB_Test.elf elf32-littleriscv)
  .debug_ranges  0x0000000000000188      0x118 ./Peripheral/src/ch32v20x_rcc.o
  .debug_ranges  0x00000000000002a0       0x40 ./Debug/debug.o
 
-.debug_line     0x0000000000000000     0x5160
- .debug_line    0x0000000000000000     0x1532 ./User/USB_Device/ch32v20x_usbfs_device.o
- .debug_line    0x0000000000001532      0x3b0 ./User/USB_Device/usb_cdc_acm.o
- .debug_line    0x00000000000018e2      0x20b ./User/USB_Device/usb_desc.o
- .debug_line    0x0000000000001aed      0x387 ./User/UART/UART.o
- .debug_line    0x0000000000001e74      0x231 ./User/ch32v20x_it.o
- .debug_line    0x00000000000020a5      0x44a ./User/main.o
- .debug_line    0x00000000000024ef      0x5f3 ./User/system_ch32v20x.o
- .debug_line    0x0000000000002ae2      0x150 ./Startup/startup_ch32v20x_D6.o
- .debug_line    0x0000000000002c32     0x10aa ./Peripheral/src/ch32v20x_gpio.o
- .debug_line    0x0000000000003cdc      0xec3 ./Peripheral/src/ch32v20x_rcc.o
- .debug_line    0x0000000000004b9f      0x5c1 ./Debug/debug.o
+.debug_line     0x0000000000000000     0x5158
+ .debug_line    0x0000000000000000     0x152a ./User/USB_Device/ch32v20x_usbfs_device.o
+ .debug_line    0x000000000000152a      0x3b0 ./User/USB_Device/usb_cdc_acm.o
+ .debug_line    0x00000000000018da      0x20b ./User/USB_Device/usb_desc.o
+ .debug_line    0x0000000000001ae5      0x387 ./User/UART/UART.o
+ .debug_line    0x0000000000001e6c      0x231 ./User/ch32v20x_it.o
+ .debug_line    0x000000000000209d      0x44a ./User/main.o
+ .debug_line    0x00000000000024e7      0x5f3 ./User/system_ch32v20x.o
+ .debug_line    0x0000000000002ada      0x150 ./Startup/startup_ch32v20x_D6.o
+ .debug_line    0x0000000000002c2a     0x10aa ./Peripheral/src/ch32v20x_gpio.o
+ .debug_line    0x0000000000003cd4      0xec3 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_line    0x0000000000004b97      0x5c1 ./Debug/debug.o
 
-.debug_str      0x0000000000000000     0x1c21
- .debug_str     0x0000000000000000     0x101a ./User/USB_Device/ch32v20x_usbfs_device.o
-                                       0x10a9 (size before relaxing)
- .debug_str     0x000000000000101a       0x7c ./User/USB_Device/usb_cdc_acm.o
-                                        0x902 (size before relaxing)
- .debug_str     0x0000000000001096       0x1e ./User/USB_Device/usb_desc.o
+.debug_str      0x0000000000000000     0x1c2c
+ .debug_str     0x0000000000000000     0x1025 ./User/USB_Device/ch32v20x_usbfs_device.o
+                                       0x10b4 (size before relaxing)
+ .debug_str     0x0000000000001025       0x7c ./User/USB_Device/usb_cdc_acm.o
+                                        0x90d (size before relaxing)
+ .debug_str     0x00000000000010a1       0x1e ./User/USB_Device/usb_desc.o
                                         0x5fd (size before relaxing)
- .debug_str     0x00000000000010b4       0x23 ./User/UART/UART.o
-                                        0x892 (size before relaxing)
- .debug_str     0x00000000000010d7       0x34 ./User/ch32v20x_it.o
+ .debug_str     0x00000000000010bf       0x23 ./User/UART/UART.o
+                                        0x89d (size before relaxing)
+ .debug_str     0x00000000000010e2       0x34 ./User/ch32v20x_it.o
                                         0x5bc (size before relaxing)
- .debug_str     0x000000000000110b      0x17e ./User/main.o
-                                        0x9f7 (size before relaxing)
- .debug_str     0x0000000000001289      0x10b ./User/system_ch32v20x.o
+ .debug_str     0x0000000000001116      0x17e ./User/main.o
+                                        0xa02 (size before relaxing)
+ .debug_str     0x0000000000001294      0x10b ./User/system_ch32v20x.o
                                         0x6d2 (size before relaxing)
- .debug_str     0x0000000000001394       0x5c ./Startup/startup_ch32v20x_D6.o
+ .debug_str     0x000000000000139f       0x5c ./Startup/startup_ch32v20x_D6.o
                                          0x9e (size before relaxing)
- .debug_str     0x00000000000013f0      0x293 ./Peripheral/src/ch32v20x_gpio.o
+ .debug_str     0x00000000000013fb      0x293 ./Peripheral/src/ch32v20x_gpio.o
                                         0x9c3 (size before relaxing)
- .debug_str     0x0000000000001683      0x422 ./Peripheral/src/ch32v20x_rcc.o
+ .debug_str     0x000000000000168e      0x422 ./Peripheral/src/ch32v20x_rcc.o
                                         0xaf1 (size before relaxing)
- .debug_str     0x0000000000001aa5      0x17c ./Debug/debug.o
+ .debug_str     0x0000000000001ab0      0x17c ./Debug/debug.o
                                         0x8ed (size before relaxing)
 
 .comment        0x0000000000000000       0x33

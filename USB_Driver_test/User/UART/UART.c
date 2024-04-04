@@ -360,7 +360,7 @@ void UART2_ParaInit( uint8_t mode )
 //            {
 //                Uart.Tx_PackLen[ Uart.Tx_DealNum ] = 0x0000;
 //                Uart.Tx_DealNum++;
-//                if( Uart.Tx_DealNum >= DEF_UARTx_TX_BUF_NUM_MAX )
+//           if( Uart.Tx_DealNum >= DEF_UARTx_TX_BUF_NUM_MAX )
 //                {
 //                    Uart.Tx_DealNum = 0x00;
 //                }
