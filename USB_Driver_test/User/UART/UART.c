@@ -180,43 +180,43 @@ volatile uint32_t UARTx_Rx_DMALastCount;                      /* Serial port 1 r
  */
 void UART2_ParaInit( uint8_t mode )
 {
-    uint8_t i;
+//    uint8_t i;
 
-    Uart.Rx_LoadPtr = 0x00;
-    Uart.Rx_DealPtr = 0x00;
-    Uart.Rx_RemainLen = 0x00;
-    Uart.Rx_TimeOut = 0x00;
-    Uart.Rx_TimeOutMax = 30;
+//    Uart.Rx_LoadPtr = 0x00;
+//    Uart.Rx_DealPtr = 0x00;
+//    Uart.Rx_RemainLen = 0x00;
+//    Uart.Rx_TimeOut = 0x00;
+//    Uart.Rx_TimeOutMax = 30;
 
-    Uart.Tx_LoadNum = 0x00;
-    Uart.Tx_DealNum = 0x00;
-    Uart.Tx_RemainNum = 0x00;
-    for( i = 0; i < DEF_UARTx_TX_BUF_NUM_MAX; i++ )
-    {
-        Uart.Tx_PackLen[ i ] = 0x00;
-    }
-    Uart.Tx_Flag = 0x00;
-    Uart.Tx_CurPackLen = 0x00;
-    Uart.Tx_CurPackPtr = 0x00;
+//   Tx_LoadNum = 0x00;
+//   Tx_DealNum = 0x00;
+//   Tx_RemainNum = 0x00;
+//    for( i = 0; i < DEF_UARTx_TX_BUF_NUM_MAX; i++ )
+//    {
+//        USB_RX_PackLen[ i ] = 0x00;
+//    }
+//    Uart.Tx_Flag = 0x00;
+//    Uart.Tx_CurPackLen = 0x00;
+//    Uart.Tx_CurPackPtr = 0x00;
 
     Uart.USB_Up_IngFlag = 0x00;
-    Uart.USB_Up_TimeOut = 0x00;
-    Uart.USB_Up_Pack0_Flag = 0x00;
+//    Uart.USB_Up_TimeOut = 0x00;
+//    Uart.USB_Up_Pack0_Flag = 0x00;
     Uart.USB_Down_StopFlag = 0x00;
-    UARTx_Rx_DMACurCount = 0x00;
-    UARTx_Rx_DMALastCount = 0x00;
-
-    if( mode )
-    {
-        Uart.Com_Cfg[ 0 ] = (uint8_t)( DEF_UARTx_BAUDRATE );
-        Uart.Com_Cfg[ 1 ] = (uint8_t)( DEF_UARTx_BAUDRATE >> 8 );
-        Uart.Com_Cfg[ 2 ] = (uint8_t)( DEF_UARTx_BAUDRATE >> 16 );
-        Uart.Com_Cfg[ 3 ] = (uint8_t)( DEF_UARTx_BAUDRATE >> 24 );
-        Uart.Com_Cfg[ 4 ] = DEF_UARTx_STOPBIT;
-        Uart.Com_Cfg[ 5 ] = DEF_UARTx_PARITY;
-        Uart.Com_Cfg[ 6 ] = DEF_UARTx_DATABIT;
-        Uart.Com_Cfg[ 7 ] = DEF_UARTx_RX_TIMEOUT;
-    }
+//    UARTx_Rx_DMACurCount = 0x00;
+//    UARTx_Rx_DMALastCount = 0x00;
+//
+//    if( mode )
+//    {
+//        Uart.Com_Cfg[ 0 ] = (uint8_t)( DEF_UARTx_BAUDRATE );
+//        Uart.Com_Cfg[ 1 ] = (uint8_t)( DEF_UARTx_BAUDRATE >> 8 );
+//        Uart.Com_Cfg[ 2 ] = (uint8_t)( DEF_UARTx_BAUDRATE >> 16 );
+//        Uart.Com_Cfg[ 3 ] = (uint8_t)( DEF_UARTx_BAUDRATE >> 24 );
+//        Uart.Com_Cfg[ 4 ] = DEF_UARTx_STOPBIT;
+//        Uart.Com_Cfg[ 5 ] = DEF_UARTx_PARITY;
+//        Uart.Com_Cfg[ 6 ] = DEF_UARTx_DATABIT;
+//        Uart.Com_Cfg[ 7 ] = DEF_UARTx_RX_TIMEOUT;
+//    }
 }
 
 
@@ -358,7 +358,7 @@ void UART2_ParaInit( uint8_t mode )
 //            Uart.Tx_CurPackPtr += count;
 //            if( Uart.Tx_CurPackLen == 0x00 )
 //            {
-//                Uart.Tx_PackLen[ Uart.Tx_DealNum ] = 0x0000;
+//                USB_RX_PackLen[ Uart.Tx_DealNum ] = 0x0000;
 //                Uart.Tx_DealNum++;
 //           if( Uart.Tx_DealNum >= DEF_UARTx_TX_BUF_NUM_MAX )
 //                {
@@ -386,7 +386,7 @@ void UART2_ParaInit( uint8_t mode )
 //            /* Determine whether to load from the last unsent buffer or from a new buffer */
 //            if( Uart.Tx_CurPackLen == 0x00 )
 //            {
-//                Uart.Tx_CurPackLen = Uart.Tx_PackLen[ Uart.Tx_DealNum ];
+//                Uart.Tx_CurPackLen = USB_RX_PackLen[ Uart.Tx_DealNum ];
 //                Uart.Tx_CurPackPtr = ( Uart.Tx_DealNum * DEF_USB_FS_PACK_LEN );
 //            }
 //            /* Configure DMA and send */

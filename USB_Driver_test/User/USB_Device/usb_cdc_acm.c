@@ -1,4 +1,13 @@
 #include "usb_cdc_acm.h"
+volatile uint16_t Rx_LoadNum;                                                /* Serial x data send buffer load number */
+volatile uint16_t Rx_DealNum;                                                /* Serial x data send buffer processing number */
+volatile uint16_t Rx_RemainNum;                                              /* Serial x data send buffer remaining unprocessed number */
+volatile uint16_t Rx_PackLen[ DEF_USB_RX_PACKS ];                    /* The current packet length of the serial x data send buffer */
+
+//    uint8_t  USB_Up_IngFlag;                                                     /* Serial xUSB packet being uploaded flag */
+//    uint8_t  USB_Down_StopFlag;                                                  /* Serial xUSB packet stop down flag */
+volatile uint8_t  COM_Cfg[8];                                                         /* Serial x parameter configuration (default baud rate is 115200, 1 stop bit, no parity, 8 data bits) */
+
 
 
 void USBFS_Init()
@@ -6,6 +15,13 @@ void USBFS_Init()
 //    RCC_Configuration();
     USBFS_RCC_Init( );
     USBFS_Device_Init( ENABLE );
+    Rx_LoadNum = 0x00;
+    Rx_DealNum = 0x00;
+    Rx_RemainNum = 0x00;
+     for( int i = 0; i < DEF_USB_RX_PACKS; i++ )
+     {
+         Rx_PackLen[ i ] = 0x00;
+     }
     }
 
 void USBprintf(const char* format, ...) {

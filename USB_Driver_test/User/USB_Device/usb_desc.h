@@ -35,8 +35,8 @@
 #define DEF_USBD_LS_UEP0_SIZE        8      /* usb ls device end-point 0 size */
 #define DEF_USBD_LS_PACK_SIZE        64     /* usb ls device max int pack size */
 
-#define  DEF_USB_RX_SIZE            2*512  /* usb receive buffer size */
-#define DEF_USB_RX_PACKS            DEF_USB_RX_SIZE/DEF_USBD_FS_PACK_SIZE
+#define  DEF_USB_RX_SIZE            (2*512)  /* usb receive buffer size */
+#define DEF_USB_RX_PACKS            (DEF_USB_RX_SIZE/DEF_USBD_FS_PACK_SIZE)
 /* Pack size */
 #define DEF_USBD_ENDP1_SIZE          DEF_USBD_FS_PACK_SIZE
 #define DEF_USBD_ENDP2_SIZE          DEF_USBD_FS_PACK_SIZE

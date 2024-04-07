@@ -11,7 +11,7 @@
 *******************************************************************************/
 
 #include "ch32v20x_usbfs_device.h"
-volatile uint8_t  COM_Cfg[ 8 ];  /* COM port details */
+
 /*******************************************************************************/
 /* Variable Definition */
 /* Global */
@@ -39,6 +39,7 @@ __attribute__ ((aligned(4))) uint8_t USBFS_EP3_Buf[ DEF_USBD_ENDP3_SIZE ];
 
 /* USB recieve  Buffer */
 __attribute__ ((aligned(4))) volatile uint8_t USBFS_RX[DEF_USB_RX_SIZE];
+volatile uint16_t USB_RX_PackLen[DEF_USB_RX_PACKS];
 
 /* USB IN Endpoint Busy Flag */
 volatile uint8_t  USBFS_Endp_Busy[ DEF_UEP_NUM ];
@@ -385,20 +386,20 @@ void USBFS_IRQHandler( void )
                     /* end-point 1 data out interrupt */
                     case USBFS_UIS_TOKEN_OUT | DEF_UEP2:
                         USBFSD->UEP2_RX_CTRL ^= USBFS_UEP_R_TOG;
-                        Uart.Tx_PackLen[ Uart.Tx_LoadNum ] = USBFSD->RX_LEN;
-                        Uart.Tx_LoadNum++;
-                        USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ ( Uart.Tx_LoadNum * DEF_USB_FS_PACK_LEN ) ];
-                        if( Uart.Tx_LoadNum >= DEF_UARTx_TX_BUF_NUM_MAX )
+                        Rx_PackLen[Rx_LoadNum ] = USBFSD->RX_LEN;
+                        Rx_LoadNum++;
+                        USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ (Rx_LoadNum * DEF_USBD_FS_PACK_SIZE) ];
+                        if(Rx_LoadNum >= DEF_USB_RX_PACKS )
                         {
-                            Uart.Tx_LoadNum = 0x00;
+                            Rx_LoadNum = 0x00;
                             USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ 0 ];
                         }
-                        Uart.Tx_RemainNum++;
-                        if( Uart.Tx_RemainNum >= ( DEF_UARTx_TX_BUF_NUM_MAX - 2 ) )
+                        Rx_RemainNum++;
+                        if(Rx_RemainNum >= ( DEF_USB_RX_PACKS- 2 ) )
                         {
                             USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
                             USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_NAK;
-                            Uart.USB_Down_StopFlag = 0x01;
+//                            Uart.USB_Down_StopFlag = 0x01;
                         }
 
                         break;
@@ -780,7 +781,7 @@ void USBFS_IRQHandler( void )
 
         USBFSD->DEV_ADDR = 0;
         USBFS_Device_Endp_Init( );
-        UART2_ParaInit( 1 );
+//        UART2_ParaInit( 1 );
         USBFSD->INT_FG = USBFS_UIF_BUS_RST;
     }
     else if( intflag & USBFS_UIF_SUSPEND )
