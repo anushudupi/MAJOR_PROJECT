@@ -386,21 +386,24 @@ void USBFS_IRQHandler( void )
                     /* end-point 1 data out interrupt */
                     case USBFS_UIS_TOKEN_OUT | DEF_UEP2:
                         USBFSD->UEP2_RX_CTRL ^= USBFS_UEP_R_TOG;
-                        Rx_PackLen[Rx_LoadNum ] = USBFSD->RX_LEN;
-                        Rx_LoadNum++;
-                        USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ (Rx_LoadNum * DEF_USBD_FS_PACK_SIZE) ];
-                        if(Rx_LoadNum >= DEF_USB_RX_PACKS )
-                        {
-                            Rx_LoadNum = 0x00;
-                            USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ 0 ];
-                        }
-                        Rx_RemainNum++;
-                        if(Rx_RemainNum >= ( DEF_USB_RX_PACKS- 2 ) )
+
+                        Rx_RemainNum =USBFSD->RX_LEN;
+                        USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[Rx_LoadNum];
+                        Rx_LoadNum  =+Rx_RemainNum;
+                        if(Rx_LoadNum >= DEF_USB_RX_SIZE-64 )
                         {
                             USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
                             USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_NAK;
-//                            Uart.USB_Down_StopFlag = 0x01;
+//                            Rx_LoadNum = 0x00;
+//                            USBFSD->UEP2_DMA = (uint32_t)(uint8_t *)&USBFS_RX[ 0 ];
                         }
+//                        Rx_RemainNum++;
+//                        if(Rx_RemainNum >= ( DEF_USB_RX_PACKS- 2 ) )
+//                        {
+//                            USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
+//                            USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_NAK;
+////                            Uart.USB_Down_StopFlag = 0x01;
+//                        }
 
                         break;
 

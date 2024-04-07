@@ -61,19 +61,24 @@ int main(void)
     GPIO_Toggle_INIT();
 
 //    printf( "main\r\n" );
-//    char *a = "Hello,world!\n ypooo ";//message string
-     int j= 200;
+//message string
+     int j= 200220;
 	while(1)
 	{
+
 //	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
 //	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], 0, DEF_UEP_CPY_LOAD );
-
+	   char a[1024];
+	    USBscanf(&a[0]);
+	    Delay_Ms(10);
+	    usb_flush_write(&a[0],(uint16_t)512);
+	    Delay_Ms(10);
 	    USBprintf("hello cdc %d\n",j);
 	    GPIO_WriteBit(GPIOC, GPIO_Pin_13, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
 
 	   // USBFS_Endp_DataUp( DEF_UEP3, &USBFS_RX[0],64, DEF_UEP_CPY_LOAD );
 	            // bit banging ASCII bytes at USB Endpoint3 to send data
-	            Delay_Ms(1000);
+	            Delay_Ms(100);
 //        UART2_DataRx_Deal( );
 //        UART2_DataTx_Deal( );
 	}

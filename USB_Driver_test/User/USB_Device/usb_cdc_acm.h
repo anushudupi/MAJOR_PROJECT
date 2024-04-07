@@ -24,5 +24,6 @@ extern volatile uint8_t  COM_Cfg[];                                             
 extern void USBFS_Init ();
 extern void usb_flush_write (uint8_t *buffer, uint16_t length);
 extern void USBprintf(const char* format, ...);
+extern void USBscanf();
 
 #endif /* USB_CDC_H */
