@@ -6,7 +6,7 @@
 * Description        : Main program body.
 *********************************************************************************
 * Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
-* Attention: This software (modified or not) and binary are used for 
+* Attention: This software (modified or not) and binary are used for
 * microcontroller manufactured by Nanjing Qinheng Microelectronics.
 *******************************************************************************/
 
@@ -20,7 +20,7 @@
 //#include "ch32v20x_usbfs_device.h"
 #include "usb_cdc_acm.h"
 #include "debug.h"
-
+#define MAX_BUFFER_SIZE 64
 void GPIO_Toggle_INIT(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure = {0};
@@ -43,7 +43,7 @@ int main(void)
 {
      u8 i=0;
 	Delay_Init( );
-//	USART_Printf_Init( 115200 );
+USART_Printf_Init( 115200 );
 //	printf("SystemClk:%d\r\n",SystemCoreClock);
 //	RCC_Configuration( );
 
@@ -59,27 +59,44 @@ int main(void)
 	USBFS_Init ();
     Delay_Ms(1000);
     GPIO_Toggle_INIT();
+//    char buffer[MAX_BUFFER_SIZE]; // Buffer to hold input
 
 //    printf( "main\r\n" );
 //message string
-     int j= 200220;
-	while(1)
-	{
+//     int j= 200220;
+     char a[64]="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz123456789012";
+     char b[64]="abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678901\n";
+while(1)
+{
 
 //	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], strlen(a), DEF_UEP_CPY_LOAD );
 //	    USBFS_Endp_DataUp( DEF_UEP3, &a[0], 0, DEF_UEP_CPY_LOAD );
-	   char a[1024];
-	    USBscanf(&a[0]);
-	    Delay_Ms(10);
-	    usb_flush_write(&a[0],(uint16_t)512);
-	    Delay_Ms(10);
-	    USBprintf("hello cdc %d\n",j);
-	    GPIO_WriteBit(GPIOC, GPIO_Pin_13, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
+//	    char *result = USBfgets(buffer,MAX_BUFFER_SIZE);
+//	    if (result != NULL) {
+//	               USBprintf("Characters read: %d\n", strlen(buffer));
+//	               USBprintf("Input read: %s\n", buffer);
 
-	   // USBFS_Endp_DataUp( DEF_UEP3, &USBFS_RX[0],64, DEF_UEP_CPY_LOAD );
+//	    USBscanf(&a[0]);
+//	    Delay_Ms(10);
+//	    usb_flush_write(&a[0],(uint16_t)512);
+//	    Delay_Ms(10);
+//	    USBprintf("hello cdc %d\n",j);
+//	    printf("hello NITK\n");
+//	    GPIO_WriteBit(GPIOC, GPIO_Pin_13, (i == 0) ? (i = Bit_SET) : (i = Bit_RESET));
+
+       for(int k =0; k<15;k++)
+       {
+	    USBFS_Endp_DataUp( DEF_UEP3, &a[0],64, DEF_UEP_CPY_LOAD );
+
+       }
 	            // bit banging ASCII bytes at USB Endpoint3 to send data
-	            Delay_Ms(100);
+       USBFS_Endp_DataUp( DEF_UEP3, &b[0],64, DEF_UEP_CPY_LOAD );
+//       USBFS_Endp_DataUp( DEF_UEP3, &b[0],0, DEF_UEP_CPY_LOAD );
+
 //        UART2_DataRx_Deal( );
 //        UART2_DataTx_Deal( );
+//	    USBprintf("running\n:");
+//	    Delay_Ms(200);
 	}
 }
+

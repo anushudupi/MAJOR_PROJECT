@@ -148,12 +148,14 @@ uint8_t USBFS_Endp_DataUp(uint8_t endp, uint8_t *pbuf, uint16_t len, uint8_t mod
 {
     uint8_t endp_mode;
     uint8_t buf_load_offset;
+   do{
+        Delay_Us(100);
 
+    } while(USBFS_Endp_Busy[ endp ]);
     /* DMA config, endp_ctrl config, endp_len config */
     if( (endp>=DEF_UEP1) && (endp<=DEF_UEP7) )
     {
-        if( USBFS_Endp_Busy[ endp ] == 0 )
-        {
+
             if( (endp == DEF_UEP1) || (endp == DEF_UEP4) )
             {
                 /* endp1/endp4 */
@@ -222,11 +224,8 @@ uint8_t USBFS_Endp_DataUp(uint8_t endp, uint8_t *pbuf, uint16_t len, uint8_t mod
                 /* response ack */
                 USBFSD_UEP_CTRL(endp) = (USBFSD_UEP_CTRL(endp) & ~USBFS_UEP_T_RES_MASK) | USBFS_UEP_T_RES_ACK;
             }
-        }
-        else
-        {
-            return 1;
-        }
+
+
     }
     else
     {

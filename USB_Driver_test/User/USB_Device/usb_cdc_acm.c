@@ -15,17 +15,17 @@ void USBFS_Init()
 //    RCC_Configuration();
     USBFS_RCC_Init( );
     USBFS_Device_Init( ENABLE );
-    Rx_LoadNum = 0x00;
-    Rx_DealNum = 0x00;
-    Rx_RemainNum = 0x00;
-     for( int i = 0; i < DEF_USB_RX_PACKS; i++ )
-     {
-         Rx_PackLen[ i ] = 0x00;
-     }
-
-     USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
-     USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
-    }
+//    Rx_LoadNum = 0x00;
+//    Rx_DealNum = 0x00;
+//    Rx_RemainNum = 0x00;
+//     for( int i = 0; i < DEF_USB_RX_PACKS; i++ )
+//     {
+//         Rx_PackLen[ i ] = 0x00;
+//     }
+//
+//     USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
+//     USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
+   }
 
 void USBprintf(const char* format, ...) {
     char buffer[512];
@@ -38,15 +38,12 @@ void USBprintf(const char* format, ...) {
 
 void usb_flush_write ( uint8_t *buffer, uint16_t length)
 {
-//    NVIC_DisableIRQ( USBFS_IRQn );
-//    NVIC_DisableIRQ( USBFS_IRQn );
     uint16_t i;
 // packets sent from buffer in size of 64(max packet size USB is 64bytes)
 
     for (i = 0; i+63 <length;i=+64) {
 
         USBFS_Endp_DataUp( DEF_UEP3, &buffer[i],64, DEF_UEP_CPY_LOAD );
-
     }
 // remainder packet
     if(length%64){
@@ -55,21 +52,52 @@ void usb_flush_write ( uint8_t *buffer, uint16_t length)
 
 // 0 packet for completion of transmission
      USBFS_Endp_DataUp( DEF_UEP3, &buffer[i],0, DEF_UEP_CPY_LOAD );
-
-
-
-
-
     }
-void USBscanf(uint8_t *buffer)
-{
-      NVIC_DisableIRQ( USBFS_IRQn );
-  NVIC_DisableIRQ( USBFS_IRQn );
- memcpy(buffer,&USBFS_RX,Rx_LoadNum);
+
+
+
+
+
+
+
+//void USBscanf(uint8_t *buffer)
+//{
+//      NVIC_DisableIRQ( USBFS_IRQn );
+//  NVIC_DisableIRQ( USBFS_IRQn );
+// memcpy(buffer,USBFS_RX,Rx_LoadNum);
+//    Rx_LoadNum=0;
+//    USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
+//    USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
+//NVIC_EnableIRQ( USBFS_IRQn );
+//
+//    }
+
+
+char *USBfgets(char *buffer, int max_chars) {
+    int num_to_copy;
+
+    NVIC_DisableIRQ( USBFS_IRQn );
+    NVIC_DisableIRQ( USBFS_IRQn );
+
+    // Determine number of characters to copy (minimum of chars_read and max_chars - 1)
+    num_to_copy = (Rx_LoadNum< max_chars - 1) ? Rx_LoadNum : max_chars - 1;
+
+    // Copy characters using memcpy
+    memcpy(buffer,USBFS_RX, num_to_copy);
+
+    // Null-terminate the buffer
+    buffer[num_to_copy] = '\0';
+
     Rx_LoadNum=0;
     USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
     USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
-NVIC_EnableIRQ( USBFS_IRQn );
 
+    NVIC_EnableIRQ( USBFS_IRQn );
+    // Check if any characters were read
+    if (num_to_copy > 0) {
+        return buffer; // Return buffer on success
+    } else {
+        return NULL;   // Return NULL if no characters were read
     }
+}
 
