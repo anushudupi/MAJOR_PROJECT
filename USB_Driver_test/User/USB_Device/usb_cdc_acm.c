@@ -15,16 +15,16 @@ void USBFS_Init()
 //    RCC_Configuration();
     USBFS_RCC_Init( );
     USBFS_Device_Init( ENABLE );
-//    Rx_LoadNum = 0x00;
-//    Rx_DealNum = 0x00;
-//    Rx_RemainNum = 0x00;
-//     for( int i = 0; i < DEF_USB_RX_PACKS; i++ )
-//     {
-//         Rx_PackLen[ i ] = 0x00;
-//     }
-//
-//     USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
-//     USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
+    Rx_LoadNum = 0x00;
+    Rx_DealNum = 0x00;
+    Rx_RemainNum = 0x00;
+     for( int i = 0; i < DEF_USB_RX_PACKS; i++ )
+     {
+         Rx_PackLen[ i ] = 0x00;
+     }
+
+     USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
+     USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
    }
 
 void USBprintf(const char* format, ...) {
@@ -59,18 +59,6 @@ void usb_flush_write ( uint8_t *buffer, uint16_t length)
 
 
 
-
-//void USBscanf(uint8_t *buffer)
-//{
-//      NVIC_DisableIRQ( USBFS_IRQn );
-//  NVIC_DisableIRQ( USBFS_IRQn );
-// memcpy(buffer,USBFS_RX,Rx_LoadNum);
-//    Rx_LoadNum=0;
-//    USBFSD->UEP2_RX_CTRL &= ~USBFS_UEP_R_RES_MASK;
-//    USBFSD->UEP2_RX_CTRL |= USBFS_UEP_R_RES_ACK;
-//NVIC_EnableIRQ( USBFS_IRQn );
-//
-//    }
 
 
 char *USBfgets(char *buffer, int max_chars) {

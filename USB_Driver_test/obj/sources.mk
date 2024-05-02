@@ -27,7 +27,6 @@ Core \
 Debug \
 Peripheral/src \
 Startup \
-User/UART \
 User/USB_Device \
 User \
 
